@@ -899,11 +899,13 @@ def get_report():
 # ---------------------------------------------------------------------------
 # Entrypoint
 # ---------------------------------------------------------------------------
-
-if __name__ == "__main__":
+def main_start():
     print("=" * 52)
     print("  Conversor de Arquivos — Interface Web")
     print("  Acesse: http://localhost:5000")
     print("=" * 52)
     threading.Timer(1.2, lambda: webbrowser.open("http://localhost:5000")).start()
     app.run(debug=False, port=5000)
+
+if __name__ == "__main__":
+    main_start()
