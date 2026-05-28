@@ -18,6 +18,7 @@ def run_command(command, description):
 def main():
     # 1. Garante que o repositório local está atualizado (Faz o Git Pull)
     # Nota: O git pull assume que você já clonou o repositório e está na branch correta.
+    run_command("git init .", "Iniciando Git no local")
     run_command("git pull https://github.com/SamuelSGSouza/Handle_Documents.git", "Atualizando o repositório local via Git Pull")
 
     # 2. Instala/Reinstala as dependências do requirements.txt
