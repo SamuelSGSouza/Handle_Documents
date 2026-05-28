@@ -1,0 +1,1 @@
+1. Em cada arquivo sped, se não for encontrado as colunas, mandar para o chat as primeiras 60 linha junto com o nome do arquivo e pedir para ele retornar quais são.

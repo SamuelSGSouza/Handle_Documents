@@ -1,0 +1,2081 @@
+[
+    {
+        "path": "Tratados/01_2019/ECD/0000.csv",
+        "extension": ".csv",
+        "execution_time_seconds": 7.758,
+        "result": "success",
+        "find_cols": [
+            "CAMPO_1",
+            "CAMPO_2",
+            "CAMPO_3",
+            "CAMPO_4",
+            "CAMPO_5",
+            "CAMPO_6",
+            "CAMPO_7",
+            "CAMPO_8",
+            "CAMPO_9",
+            "CAMPO_10",
+            "CAMPO_11",
+            "CAMPO_12",
+            "CAMPO_13",
+            "CAMPO_14",
+            "CAMPO_15",
+            "CAMPO_16",
+            "CAMPO_17",
+            "CAMPO_18",
+            "CAMPO_19",
+            "CAMPO_20",
+            "CAMPO_21",
+            "CAMPO_22"
+        ],
+        "warning": "\nNão foi possível identificar com precisão as colunas do arquivo.",
+        "failure_reason": null,
+        "suggested_solution": null
+    },
+    {
+        "path": "Tratados/01_2019/ECD/0001.csv",
+        "extension": ".csv",
+        "execution_time_seconds": 7.758,
+        "result": "success",
+        "find_cols": [
+            "IND_DAD"
+        ],
+        "warning": "",
+        "failure_reason": null,
+        "suggested_solution": null
+    },
+    {
+        "path": "Tratados/01_2019/ECD/0007.csv",
+        "extension": ".csv",
+        "execution_time_seconds": 7.758,
+        "result": "success",
+        "find_cols": [
+            "COD_ENT_REF",
+            "CAMPO_EXTRA_1"
+        ],
+        "warning": "",
+        "failure_reason": null,
+        "suggested_solution": null
+    },
+    {
+        "path": "Tratados/01_2019/ECD/0990.csv",
+        "extension": ".csv",
+        "execution_time_seconds": 7.758,
+        "result": "success",
+        "find_cols": [
+            "QTD_LIN_0"
+        ],
+        "warning": "",
+        "failure_reason": null,
+        "suggested_solution": null
+    },
+    {
+        "path": "Tratados/01_2019/ECD/C001.csv",
+        "extension": ".csv",
+        "execution_time_seconds": 7.758,
+        "result": "success",
+        "find_cols": [
+            "IND_MOV"
+        ],
+        "warning": "",
+        "failure_reason": null,
+        "suggested_solution": null
+    },
+    {
+        "path": "Tratados/01_2019/ECD/C040.csv",
+        "extension": ".csv",
+        "execution_time_seconds": 7.758,
+        "result": "success",
+        "find_cols": [
+            "COD_MOD",
+            "ECF_MOD",
+            "ECF_FAB",
+            "CAMPO_EXTRA_1",
+            "CAMPO_EXTRA_2",
+            "CAMPO_EXTRA_3",
+            "CAMPO_EXTRA_4",
+            "CAMPO_EXTRA_5",
+            "CAMPO_EXTRA_6",
+            "CAMPO_EXTRA_7",
+            "CAMPO_EXTRA_8",
+            "CAMPO_EXTRA_9",
+            "CAMPO_EXTRA_10",
+            "CAMPO_EXTRA_11",
+            "CAMPO_EXTRA_12",
+            "CAMPO_EXTRA_13",
+            "CAMPO_EXTRA_14",
+            "CAMPO_EXTRA_15"
+        ],
+        "warning": "",
+        "failure_reason": null,
+        "suggested_solution": null
+    },
+    {
+        "path": "Tratados/01_2019/ECD/C150.csv",
+        "extension": ".csv",
+        "execution_time_seconds": 7.758,
+        "result": "success",
+        "find_cols": [
+            "COD_PART",
+            "VEIC_ID"
+        ],
+        "warning": "",
+        "failure_reason": null,
+        "suggested_solution": null
+    },
+    {
+        "path": "Tratados/01_2019/ECD/C155.csv",
+        "extension": ".csv",
+        "execution_time_seconds": 7.758,
+        "result": "success",
+        "find_cols": [
+            "CST_ICMS",
+            "CFOP",
+            "ALIQ_ICMS",
+            "VL_OPR",
+            "VL_DESC",
+            "VL_BC_ICMS",
+            "VL_ICMS",
+            "VL_BC_ICMS_ST"
+        ],
+        "warning": "",
+        "failure_reason": null,
+        "suggested_solution": null
+    },
+    {
+        "path": "Tratados/01_2019/ECD/C600.csv",
+        "extension": ".csv",
+        "execution_time_seconds": 7.758,
+        "result": "success",
+        "find_cols": [
+            "COD_MOD",
+            "COD_MUN",
+            "SER",
+            "SUB"
+        ],
+        "warning": "",
+        "failure_reason": null,
+        "suggested_solution": null
+    },
+    {
+        "path": "Tratados/01_2019/ECD/C650.csv",
+        "extension": ".csv",
+        "execution_time_seconds": 7.758,
+        "result": "success",
+        "find_cols": [
+            "COD_MOD",
+            "ECF_MOD",
+            "ECF_FAB",
+            "ECF_CX",
+            "NUM_DOC"
+        ],
+        "warning": "",
+        "failure_reason": null,
+        "suggested_solution": null
+    },
+    {
+        "path": "Tratados/01_2019/ECD/C990.csv",
+        "extension": ".csv",
+        "execution_time_seconds": 7.758,
+        "result": "success",
+        "find_cols": [
+            "QTD_LIN_C"
+        ],
+        "warning": "",
+        "failure_reason": null,
+        "suggested_solution": null
+    },
+    {
+        "path": "Tratados/01_2019/ECD/I001.csv",
+        "extension": ".csv",
+        "execution_time_seconds": 7.758,
+        "result": "success",
+        "find_cols": [
+            "IND_DAD"
+        ],
+        "warning": "",
+        "failure_reason": null,
+        "suggested_solution": null
+    },
+    {
+        "path": "Tratados/01_2019/ECD/I010.csv",
+        "extension": ".csv",
+        "execution_time_seconds": 7.758,
+        "result": "success",
+        "find_cols": [
+            "IND_ESC",
+            "COD_VER_LC"
+        ],
+        "warning": "",
+        "failure_reason": null,
+        "suggested_solution": null
+    },
+    {
+        "path": "Tratados/01_2019/ECD/I030.csv",
+        "extension": ".csv",
+        "execution_time_seconds": 7.758,
+        "result": "success",
+        "find_cols": [
+            "DNRC_ABERT",
+            "NUM_ORD",
+            "NAT_LIVR",
+            "QTD_LIN",
+            "NOME",
+            "NIRE",
+            "CNPJ",
+            "DT_ARQ",
+            "DT_ARQ_CONV",
+            "DESC_MUN",
+            "CAMPO_EXTRA_1"
+        ],
+        "warning": "",
+        "failure_reason": null,
+        "suggested_solution": null
+    },
+    {
+        "path": "Tratados/01_2019/ECD/I050.csv",
+        "extension": ".csv",
+        "execution_time_seconds": 7.758,
+        "result": "success",
+        "find_cols": [
+            "DT_ALT",
+            "COD_NAT",
+            "IND_CTA",
+            "NIVEL",
+            "COD_CTA",
+            "COD_CTA_SUP",
+            "CTA"
+        ],
+        "warning": "",
+        "failure_reason": null,
+        "suggested_solution": null
+    },
+    {
+        "path": "Tratados/01_2019/ECD/I051.csv",
+        "extension": ".csv",
+        "execution_time_seconds": 7.758,
+        "result": "success",
+        "find_cols": [
+            "COD_ENT_REF",
+            "COD_CTA_REF"
+        ],
+        "warning": "",
+        "failure_reason": null,
+        "suggested_solution": null
+    },
+    {
+        "path": "Tratados/01_2019/ECD/I052.csv",
+        "extension": ".csv",
+        "execution_time_seconds": 7.758,
+        "result": "success",
+        "find_cols": [
+            "COD_AGL",
+            "IND_CTA"
+        ],
+        "warning": "",
+        "failure_reason": null,
+        "suggested_solution": null
+    },
+    {
+        "path": "Tratados/01_2019/ECD/I100.csv",
+        "extension": ".csv",
+        "execution_time_seconds": 7.758,
+        "result": "success",
+        "find_cols": [
+            "DT_ALT",
+            "COD_CCUS",
+            "CCUS"
+        ],
+        "warning": "",
+        "failure_reason": null,
+        "suggested_solution": null
+    },
+    {
+        "path": "Tratados/01_2019/ECD/I150.csv",
+        "extension": ".csv",
+        "execution_time_seconds": 7.758,
+        "result": "success",
+        "find_cols": [
+            "DT_INI",
+            "DT_FIN"
+        ],
+        "warning": "",
+        "failure_reason": null,
+        "suggested_solution": null
+    },
+    {
+        "path": "Tratados/01_2019/ECD/I155.csv",
+        "extension": ".csv",
+        "execution_time_seconds": 7.758,
+        "result": "success",
+        "find_cols": [
+            "COD_CTA",
+            "COD_CCUS",
+            "VL_SLD_INI",
+            "IND_DC_INI",
+            "VL_DEB",
+            "VL_CRED",
+            "VL_SLD_FIN",
+            "IND_DC_FIN"
+        ],
+        "warning": "",
+        "failure_reason": null,
+        "suggested_solution": null
+    },
+    {
+        "path": "Tratados/01_2019/ECD/I200.csv",
+        "extension": ".csv",
+        "execution_time_seconds": 7.758,
+        "result": "success",
+        "find_cols": [
+            "NUM_LCTO",
+            "DT_LCTO",
+            "VL_LCTO",
+            "IND_LCTO",
+            "CAMPO_EXTRA_1"
+        ],
+        "warning": "",
+        "failure_reason": null,
+        "suggested_solution": null
+    },
+    {
+        "path": "Tratados/01_2019/ECD/I250.csv",
+        "extension": ".csv",
+        "execution_time_seconds": 7.758,
+        "result": "success",
+        "find_cols": [
+            "COD_CTA",
+            "COD_CCUS",
+            "VL_DC",
+            "IND_DC",
+            "NUM_ARQ",
+            "COD_HIST_PAD",
+            "HIST",
+            "COD_PART"
+        ],
+        "warning": "",
+        "failure_reason": null,
+        "suggested_solution": null
+    },
+    {
+        "path": "Tratados/01_2019/ECD/I990.csv",
+        "extension": ".csv",
+        "execution_time_seconds": 7.758,
+        "result": "success",
+        "find_cols": [
+            "QTD_LIN_I"
+        ],
+        "warning": "",
+        "failure_reason": null,
+        "suggested_solution": null
+    },
+    {
+        "path": "Tratados/01_2019/ECD/J001.csv",
+        "extension": ".csv",
+        "execution_time_seconds": 7.758,
+        "result": "success",
+        "find_cols": [
+            "IND_DAD"
+        ],
+        "warning": "",
+        "failure_reason": null,
+        "suggested_solution": null
+    },
+    {
+        "path": "Tratados/01_2019/ECD/J900.csv",
+        "extension": ".csv",
+        "execution_time_seconds": 7.758,
+        "result": "success",
+        "find_cols": [
+            "NUM_ARQ",
+            "HASH",
+            "CAMPO_EXTRA_1",
+            "CAMPO_EXTRA_2",
+            "CAMPO_EXTRA_3",
+            "CAMPO_EXTRA_4",
+            "CAMPO_EXTRA_5"
+        ],
+        "warning": "",
+        "failure_reason": null,
+        "suggested_solution": null
+    },
+    {
+        "path": "Tratados/01_2019/ECD/J930.csv",
+        "extension": ".csv",
+        "execution_time_seconds": 7.758,
+        "result": "success",
+        "find_cols": [
+            "IDENT_NOM",
+            "IDENT_CPF",
+            "IDENT_QUALIF",
+            "COD_ASSIN",
+            "CAMPO_EXTRA_1",
+            "CAMPO_EXTRA_2",
+            "CAMPO_EXTRA_3",
+            "CAMPO_EXTRA_4",
+            "CAMPO_EXTRA_5",
+            "CAMPO_EXTRA_6",
+            "CAMPO_EXTRA_7"
+        ],
+        "warning": "",
+        "failure_reason": null,
+        "suggested_solution": null
+    },
+    {
+        "path": "Tratados/01_2019/ECD/J935.csv",
+        "extension": ".csv",
+        "execution_time_seconds": 7.758,
+        "result": "success",
+        "find_cols": [
+            "COD_HIST_FAT",
+            "CAMPO_EXTRA_1",
+            "CAMPO_EXTRA_2"
+        ],
+        "warning": "",
+        "failure_reason": null,
+        "suggested_solution": null
+    },
+    {
+        "path": "Tratados/01_2019/ECD/J990.csv",
+        "extension": ".csv",
+        "execution_time_seconds": 7.758,
+        "result": "success",
+        "find_cols": [
+            "QTD_LIN_J"
+        ],
+        "warning": "",
+        "failure_reason": null,
+        "suggested_solution": null
+    },
+    {
+        "path": "Tratados/01_2019/ECD/9001.csv",
+        "extension": ".csv",
+        "execution_time_seconds": 7.758,
+        "result": "success",
+        "find_cols": [
+            "IND_MOV"
+        ],
+        "warning": "",
+        "failure_reason": null,
+        "suggested_solution": null
+    },
+    {
+        "path": "Tratados/01_2019/ECD/9900.csv",
+        "extension": ".csv",
+        "execution_time_seconds": 7.758,
+        "result": "success",
+        "find_cols": [
+            "REG_BLC",
+            "QTD_REG_BLC"
+        ],
+        "warning": "",
+        "failure_reason": null,
+        "suggested_solution": null
+    },
+    {
+        "path": "Tratados/01_2019/ECD/9990.csv",
+        "extension": ".csv",
+        "execution_time_seconds": 7.758,
+        "result": "success",
+        "find_cols": [
+            "QTD_LIN_9"
+        ],
+        "warning": "",
+        "failure_reason": null,
+        "suggested_solution": null
+    },
+    {
+        "path": "Tratados/01_2019/ECD/9999.csv",
+        "extension": ".csv",
+        "execution_time_seconds": 7.758,
+        "result": "success",
+        "find_cols": [
+            "QTD_LIN"
+        ],
+        "warning": "",
+        "failure_reason": null,
+        "suggested_solution": null
+    },
+    {
+        "path": "Tratados/Export_2021_V2__Export2021Data.csv",
+        "extension": ".csv",
+        "execution_time_seconds": 2.7864,
+        "result": "success",
+        "find_cols": [
+            "   ",
+            "NUM_INVOICE",
+            "DT_EMISSAO_INVOICE",
+            "AREA_NEGOCIO",
+            "COD_PARCEIRO",
+            "CNPJ",
+            "COD_PARCEIRO",
+            "COD_PAIS",
+            "CLIENTE",
+            "COD_PARCEIRO_DUE",
+            "IMPORTADOR_DUE",
+            "RECEPTOR",
+            "COD_PAIS",
+            "COD_INCOTERM",
+            "SEQ_ITEM_INVOICE",
+            "NCM",
+            "PART_NUMBER",
+            "DESCRICAO_RESUMIDA",
+            "ITEM_DUE",
+            "S_INFO_LPCO",
+            "S_COD_ENQUADRAMENTO_1",
+            "PESO_LIQ_UNIT_ITEM_INVOICE",
+            "PESO_BRUTO_UNIT_ITEM_INVOICE",
+            "PESO_LIQUIDO_NF",
+            "PESO_BRUTO_NF",
+            "ATRIB_FLEX_VC_STRING_10",
+            "NUM_SERIE_ITEM_INVOICE",
+            "NUM_CONHECIMENTO",
+            "QTDE_ITEM_INVOICE",
+            "VALOR_UNIT_VMLE_ITEM_INVOICE",
+            "VALOR_TOTAL_VMLE_ITEM_INVOICE",
+            "VALOR_TOTAL_VMCV_ITEM_INVOICE",
+            "STATUS_CHECK",
+            "DATA_CONTABILIZACAO",
+            "REF_CONHECIMENTO",
+            "NUM_VIAGEM",
+            "DATA_CHECK",
+            "OBS",
+            "NUM_DUE",
+            "S_CHAVE_ACESSO",
+            "S_CHAVE_ACESSO",
+            "D_DATA_REGISTRO",
+            "D_DATA_DESEMBARACO",
+            "S_CANAL",
+            "D_DATA_STATUS",
+            "S_PAIS_IMPORTADOR",
+            "STATUS_DUE",
+            "CHASSI_EXPORT",
+            "NUM_NF_EXPORT",
+            "SERIE_NF",
+            "DT_NF_EXPORT",
+            "CFOP",
+            "SEQ_ITEM_NF",
+            "VL_ML_EXPORT",
+            "VL_ME_EXPORT"
+        ],
+        "warning": "",
+        "failure_reason": null,
+        "suggested_solution": null
+    },
+    {
+        "path": "Tratados/01_2019/EFD/0000.csv",
+        "extension": ".csv",
+        "execution_time_seconds": 1.0541,
+        "result": "success",
+        "find_cols": [
+            "CAMPO_1",
+            "CAMPO_2",
+            "CAMPO_3",
+            "CAMPO_4",
+            "CAMPO_5",
+            "CAMPO_6",
+            "CAMPO_7",
+            "CAMPO_8",
+            "CAMPO_9",
+            "CAMPO_10",
+            "CAMPO_11",
+            "CAMPO_12",
+            "CAMPO_13",
+            "CAMPO_14"
+        ],
+        "warning": "\nNão foi possível identificar com precisão as colunas do arquivo.",
+        "failure_reason": null,
+        "suggested_solution": null
+    },
+    {
+        "path": "Tratados/01_2019/EFD/0001.csv",
+        "extension": ".csv",
+        "execution_time_seconds": 1.0541,
+        "result": "success",
+        "find_cols": [
+            "IND_DAD"
+        ],
+        "warning": "",
+        "failure_reason": null,
+        "suggested_solution": null
+    },
+    {
+        "path": "Tratados/01_2019/EFD/0005.csv",
+        "extension": ".csv",
+        "execution_time_seconds": 1.0541,
+        "result": "success",
+        "find_cols": [
+            "CAMPO_1",
+            "CAMPO_2",
+            "CAMPO_3",
+            "CAMPO_4",
+            "CAMPO_5",
+            "CAMPO_6",
+            "CAMPO_7",
+            "CAMPO_8",
+            "CAMPO_9"
+        ],
+        "warning": "\nNão foi possível identificar com precisão as colunas do arquivo.",
+        "failure_reason": null,
+        "suggested_solution": null
+    },
+    {
+        "path": "Tratados/01_2019/EFD/0015.csv",
+        "extension": ".csv",
+        "execution_time_seconds": 1.0541,
+        "result": "success",
+        "find_cols": [
+            "CAMPO_1",
+            "CAMPO_2"
+        ],
+        "warning": "\nNão foi possível identificar com precisão as colunas do arquivo.",
+        "failure_reason": null,
+        "suggested_solution": null
+    },
+    {
+        "path": "Tratados/01_2019/EFD/0100.csv",
+        "extension": ".csv",
+        "execution_time_seconds": 1.0541,
+        "result": "success",
+        "find_cols": [
+            "CAMPO_1",
+            "CAMPO_2",
+            "CAMPO_3",
+            "CAMPO_4",
+            "CAMPO_5",
+            "CAMPO_6",
+            "CAMPO_7",
+            "CAMPO_8",
+            "CAMPO_9",
+            "CAMPO_10",
+            "CAMPO_11",
+            "CAMPO_12",
+            "CAMPO_13"
+        ],
+        "warning": "\nNão foi possível identificar com precisão as colunas do arquivo.",
+        "failure_reason": null,
+        "suggested_solution": null
+    },
+    {
+        "path": "Tratados/01_2019/EFD/0150.csv",
+        "extension": ".csv",
+        "execution_time_seconds": 1.0541,
+        "result": "success",
+        "find_cols": [
+            "CAMPO_1",
+            "CAMPO_2",
+            "CAMPO_3",
+            "CAMPO_4",
+            "CAMPO_5",
+            "CAMPO_6",
+            "CAMPO_7",
+            "CAMPO_8",
+            "CAMPO_9",
+            "CAMPO_10",
+            "CAMPO_11",
+            "CAMPO_12"
+        ],
+        "warning": "\nNão foi possível identificar com precisão as colunas do arquivo.",
+        "failure_reason": null,
+        "suggested_solution": null
+    },
+    {
+        "path": "Tratados/01_2019/EFD/0175.csv",
+        "extension": ".csv",
+        "execution_time_seconds": 1.0541,
+        "result": "success",
+        "find_cols": [
+            "CAMPO_1",
+            "CAMPO_2",
+            "CAMPO_3"
+        ],
+        "warning": "\nNão foi possível identificar com precisão as colunas do arquivo.",
+        "failure_reason": null,
+        "suggested_solution": null
+    },
+    {
+        "path": "Tratados/01_2019/EFD/0190.csv",
+        "extension": ".csv",
+        "execution_time_seconds": 1.0541,
+        "result": "success",
+        "find_cols": [
+            "CAMPO_1",
+            "CAMPO_2"
+        ],
+        "warning": "\nNão foi possível identificar com precisão as colunas do arquivo.",
+        "failure_reason": null,
+        "suggested_solution": null
+    },
+    {
+        "path": "Tratados/01_2019/EFD/0200.csv",
+        "extension": ".csv",
+        "execution_time_seconds": 1.0541,
+        "result": "success",
+        "find_cols": [
+            "CAMPO_1",
+            "CAMPO_2",
+            "CAMPO_3",
+            "CAMPO_4",
+            "CAMPO_5",
+            "CAMPO_6",
+            "CAMPO_7",
+            "CAMPO_8",
+            "CAMPO_9",
+            "CAMPO_10",
+            "CAMPO_11",
+            "CAMPO_12"
+        ],
+        "warning": "\nNão foi possível identificar com precisão as colunas do arquivo.",
+        "failure_reason": null,
+        "suggested_solution": null
+    },
+    {
+        "path": "Tratados/01_2019/EFD/0205.csv",
+        "extension": ".csv",
+        "execution_time_seconds": 1.0541,
+        "result": "success",
+        "find_cols": [
+            "CAMPO_1",
+            "CAMPO_2",
+            "CAMPO_3",
+            "CAMPO_4"
+        ],
+        "warning": "\nNão foi possível identificar com precisão as colunas do arquivo.",
+        "failure_reason": null,
+        "suggested_solution": null
+    },
+    {
+        "path": "Tratados/01_2019/EFD/0210.csv",
+        "extension": ".csv",
+        "execution_time_seconds": 1.0541,
+        "result": "success",
+        "find_cols": [
+            "CAMPO_1",
+            "CAMPO_2",
+            "CAMPO_3"
+        ],
+        "warning": "\nNão foi possível identificar com precisão as colunas do arquivo.",
+        "failure_reason": null,
+        "suggested_solution": null
+    },
+    {
+        "path": "Tratados/01_2019/EFD/0300.csv",
+        "extension": ".csv",
+        "execution_time_seconds": 1.0541,
+        "result": "success",
+        "find_cols": [
+            "CAMPO_1",
+            "CAMPO_2",
+            "CAMPO_3",
+            "CAMPO_4",
+            "CAMPO_5",
+            "CAMPO_6"
+        ],
+        "warning": "\nNão foi possível identificar com precisão as colunas do arquivo.",
+        "failure_reason": null,
+        "suggested_solution": null
+    },
+    {
+        "path": "Tratados/01_2019/EFD/0305.csv",
+        "extension": ".csv",
+        "execution_time_seconds": 1.0541,
+        "result": "success",
+        "find_cols": [
+            "CAMPO_1",
+            "CAMPO_2",
+            "CAMPO_3"
+        ],
+        "warning": "\nNão foi possível identificar com precisão as colunas do arquivo.",
+        "failure_reason": null,
+        "suggested_solution": null
+    },
+    {
+        "path": "Tratados/01_2019/EFD/0400.csv",
+        "extension": ".csv",
+        "execution_time_seconds": 1.0541,
+        "result": "success",
+        "find_cols": [
+            "CAMPO_1",
+            "CAMPO_2"
+        ],
+        "warning": "\nNão foi possível identificar com precisão as colunas do arquivo.",
+        "failure_reason": null,
+        "suggested_solution": null
+    },
+    {
+        "path": "Tratados/01_2019/EFD/0460.csv",
+        "extension": ".csv",
+        "execution_time_seconds": 1.0541,
+        "result": "success",
+        "find_cols": [
+            "CAMPO_1",
+            "CAMPO_2"
+        ],
+        "warning": "\nNão foi possível identificar com precisão as colunas do arquivo.",
+        "failure_reason": null,
+        "suggested_solution": null
+    },
+    {
+        "path": "Tratados/01_2019/EFD/0500.csv",
+        "extension": ".csv",
+        "execution_time_seconds": 1.0541,
+        "result": "success",
+        "find_cols": [
+            "CAMPO_1",
+            "CAMPO_2",
+            "CAMPO_3",
+            "CAMPO_4",
+            "CAMPO_5",
+            "CAMPO_6"
+        ],
+        "warning": "\nNão foi possível identificar com precisão as colunas do arquivo.",
+        "failure_reason": null,
+        "suggested_solution": null
+    },
+    {
+        "path": "Tratados/01_2019/EFD/0600.csv",
+        "extension": ".csv",
+        "execution_time_seconds": 1.0541,
+        "result": "success",
+        "find_cols": [
+            "CAMPO_1",
+            "CAMPO_2",
+            "CAMPO_3"
+        ],
+        "warning": "\nNão foi possível identificar com precisão as colunas do arquivo.",
+        "failure_reason": null,
+        "suggested_solution": null
+    },
+    {
+        "path": "Tratados/01_2019/EFD/0990.csv",
+        "extension": ".csv",
+        "execution_time_seconds": 1.0541,
+        "result": "success",
+        "find_cols": [
+            "QTD_LIN_0"
+        ],
+        "warning": "",
+        "failure_reason": null,
+        "suggested_solution": null
+    },
+    {
+        "path": "Tratados/01_2019/EFD/B001.csv",
+        "extension": ".csv",
+        "execution_time_seconds": 1.0541,
+        "result": "success",
+        "find_cols": [
+            "CAMPO_1"
+        ],
+        "warning": "\nNão foi possível identificar com precisão as colunas do arquivo.",
+        "failure_reason": null,
+        "suggested_solution": null
+    },
+    {
+        "path": "Tratados/01_2019/EFD/B990.csv",
+        "extension": ".csv",
+        "execution_time_seconds": 1.0541,
+        "result": "success",
+        "find_cols": [
+            "CAMPO_1"
+        ],
+        "warning": "\nNão foi possível identificar com precisão as colunas do arquivo.",
+        "failure_reason": null,
+        "suggested_solution": null
+    },
+    {
+        "path": "Tratados/01_2019/EFD/C001.csv",
+        "extension": ".csv",
+        "execution_time_seconds": 1.0541,
+        "result": "success",
+        "find_cols": [
+            "IND_MOV"
+        ],
+        "warning": "",
+        "failure_reason": null,
+        "suggested_solution": null
+    },
+    {
+        "path": "Tratados/01_2019/EFD/C100.csv",
+        "extension": ".csv",
+        "execution_time_seconds": 1.0541,
+        "result": "success",
+        "find_cols": [
+            "IND_OPER",
+            "IND_EMIT",
+            "COD_PART",
+            "COD_MOD",
+            "COD_SIT",
+            "SER",
+            "NUM_DOC",
+            "CHV_DFE",
+            "DT_DOC",
+            "DT_E_S",
+            "VL_DOC",
+            "IND_PGTO",
+            "VL_DESC",
+            "VL_ABAT_NT",
+            "VL_MERC",
+            "IND_FRT",
+            "VL_FRT",
+            "VL_SEG",
+            "VL_OUT_DA",
+            "VL_BC_ICMS",
+            "VL_ICMS",
+            "VL_BC_ICMS_ST",
+            "VL_ICMS_ST",
+            "VL_IPI",
+            "VL_PIS",
+            "VL_COFINS",
+            "VL_PIS_ST",
+            "VL_COFINS_ST"
+        ],
+        "warning": "",
+        "failure_reason": null,
+        "suggested_solution": null
+    },
+    {
+        "path": "Tratados/01_2019/EFD/C120.csv",
+        "extension": ".csv",
+        "execution_time_seconds": 1.0541,
+        "result": "success",
+        "find_cols": [
+            "CAMPO_1",
+            "CAMPO_2",
+            "CAMPO_3",
+            "CAMPO_4",
+            "CAMPO_5"
+        ],
+        "warning": "\nNão foi possível identificar com precisão as colunas do arquivo.",
+        "failure_reason": null,
+        "suggested_solution": null
+    },
+    {
+        "path": "Tratados/01_2019/EFD/C190.csv",
+        "extension": ".csv",
+        "execution_time_seconds": 1.0541,
+        "result": "success",
+        "find_cols": [
+            "CST_ICMS",
+            "CFOP",
+            "ALIQ_ICMS",
+            "VL_OPR",
+            "VL_BC_ICMS",
+            "VL_ICMS",
+            "VL_BC_ICMS_ST",
+            "VL_ICMS_ST",
+            "VL_RED_BC",
+            "VL_IPI",
+            "COD_OBS"
+        ],
+        "warning": "",
+        "failure_reason": null,
+        "suggested_solution": null
+    },
+    {
+        "path": "Tratados/01_2019/EFD/C191.csv",
+        "extension": ".csv",
+        "execution_time_seconds": 1.0541,
+        "result": "success",
+        "find_cols": [
+            "CAMPO_1",
+            "CAMPO_2",
+            "CAMPO_3"
+        ],
+        "warning": "\nNão foi possível identificar com precisão as colunas do arquivo.",
+        "failure_reason": null,
+        "suggested_solution": null
+    },
+    {
+        "path": "Tratados/01_2019/EFD/C105.csv",
+        "extension": ".csv",
+        "execution_time_seconds": 1.0541,
+        "result": "success",
+        "find_cols": [
+            "CAMPO_1",
+            "CAMPO_2"
+        ],
+        "warning": "\nNão foi possível identificar com precisão as colunas do arquivo.",
+        "failure_reason": null,
+        "suggested_solution": null
+    },
+    {
+        "path": "Tratados/01_2019/EFD/C170.csv",
+        "extension": ".csv",
+        "execution_time_seconds": 1.0541,
+        "result": "success",
+        "find_cols": [
+            "NUM_ITEM",
+            "COD_ITEM",
+            "DESCR_COMPL",
+            "QTD",
+            "UNID",
+            "VL_ITEM",
+            "VL_DESC",
+            "IND_MOV",
+            "CST_ICMS",
+            "CFOP",
+            "COD_NAT",
+            "VL_BC_ICMS",
+            "ALIQ_ICMS",
+            "VL_ICMS",
+            "VL_BC_ICMS_ST",
+            "ALIQ_ST",
+            "VL_ICMS_ST",
+            "IND_APUR",
+            "CST_IPI",
+            "COD_ENQ",
+            "VL_BC_IPI",
+            "ALIQ_IPI",
+            "VL_IPI",
+            "CST_PIS",
+            "VL_BC_PIS",
+            "ALIQ_PIS_PERCENTUAL",
+            "QUANT_BC_PIS",
+            "ALIQ_PIS_REAIS",
+            "VL_PIS",
+            "CST_COFINS",
+            "VL_BC_COFINS",
+            "ALIQ_COFINS_PERCENTUAL",
+            "QUANT_BC_COFINS",
+            "ALIQ_COFINS_REAIS",
+            "VL_COFINS",
+            "COD_CTA",
+            "VL_ABAT_NT"
+        ],
+        "warning": "",
+        "failure_reason": null,
+        "suggested_solution": null
+    },
+    {
+        "path": "Tratados/01_2019/EFD/C195.csv",
+        "extension": ".csv",
+        "execution_time_seconds": 1.0541,
+        "result": "success",
+        "find_cols": [
+            "CAMPO_1",
+            "CAMPO_2"
+        ],
+        "warning": "\nNão foi possível identificar com precisão as colunas do arquivo.",
+        "failure_reason": null,
+        "suggested_solution": null
+    },
+    {
+        "path": "Tratados/01_2019/EFD/C500.csv",
+        "extension": ".csv",
+        "execution_time_seconds": 1.0541,
+        "result": "success",
+        "find_cols": [
+            "CAMPO_1",
+            "CAMPO_2",
+            "CAMPO_3",
+            "CAMPO_4",
+            "CAMPO_5",
+            "CAMPO_6",
+            "CAMPO_7",
+            "CAMPO_8",
+            "CAMPO_9",
+            "CAMPO_10",
+            "CAMPO_11",
+            "CAMPO_12",
+            "CAMPO_13",
+            "CAMPO_14",
+            "CAMPO_15",
+            "CAMPO_16",
+            "CAMPO_17",
+            "CAMPO_18",
+            "CAMPO_19",
+            "CAMPO_20",
+            "CAMPO_21",
+            "CAMPO_22",
+            "CAMPO_23",
+            "CAMPO_24",
+            "CAMPO_25",
+            "CAMPO_26"
+        ],
+        "warning": "\nNão foi possível identificar com precisão as colunas do arquivo.",
+        "failure_reason": null,
+        "suggested_solution": null
+    },
+    {
+        "path": "Tratados/01_2019/EFD/C590.csv",
+        "extension": ".csv",
+        "execution_time_seconds": 1.0541,
+        "result": "success",
+        "find_cols": [
+            "CAMPO_1",
+            "CAMPO_2",
+            "CAMPO_3",
+            "CAMPO_4",
+            "CAMPO_5",
+            "CAMPO_6",
+            "CAMPO_7",
+            "CAMPO_8",
+            "CAMPO_9",
+            "CAMPO_10"
+        ],
+        "warning": "\nNão foi possível identificar com precisão as colunas do arquivo.",
+        "failure_reason": null,
+        "suggested_solution": null
+    },
+    {
+        "path": "Tratados/01_2019/EFD/C990.csv",
+        "extension": ".csv",
+        "execution_time_seconds": 1.0541,
+        "result": "success",
+        "find_cols": [
+            "QTD_LIN_C"
+        ],
+        "warning": "",
+        "failure_reason": null,
+        "suggested_solution": null
+    },
+    {
+        "path": "Tratados/01_2019/EFD/D001.csv",
+        "extension": ".csv",
+        "execution_time_seconds": 1.0541,
+        "result": "success",
+        "find_cols": [
+            "CAMPO_1"
+        ],
+        "warning": "\nNão foi possível identificar com precisão as colunas do arquivo.",
+        "failure_reason": null,
+        "suggested_solution": null
+    },
+    {
+        "path": "Tratados/01_2019/EFD/D100.csv",
+        "extension": ".csv",
+        "execution_time_seconds": 1.0541,
+        "result": "success",
+        "find_cols": [
+            "IND_OPER",
+            "IND_EMIT",
+            "COD_PART",
+            "COD_MOD",
+            "COD_SIT",
+            "SER",
+            "SUB",
+            "NUM_DOC",
+            "CHV_CTE",
+            "DT_DOC",
+            "DT_A_P",
+            "TP_CT-E",
+            "CHV_CTE_REF",
+            "VL_DOC",
+            "VL_DESC",
+            "IND_FRT",
+            "VL_SERV",
+            "VL_BC_ICMS",
+            "VL_ICMS",
+            "VL_NT",
+            "COD_INF",
+            "COD_CTA",
+            "CAMPO_EXTRA_1",
+            "CAMPO_EXTRA_2"
+        ],
+        "warning": "",
+        "failure_reason": null,
+        "suggested_solution": null
+    },
+    {
+        "path": "Tratados/01_2019/EFD/D190.csv",
+        "extension": ".csv",
+        "execution_time_seconds": 1.0541,
+        "result": "success",
+        "find_cols": [
+            "CST_ICMS",
+            "CFOP",
+            "ALIQ_ICMS",
+            "VL_OPR",
+            "VL_BC_ICMS",
+            "VL_ICMS",
+            "VL_RED_BC",
+            "COD_OBS"
+        ],
+        "warning": "",
+        "failure_reason": null,
+        "suggested_solution": null
+    },
+    {
+        "path": "Tratados/01_2019/EFD/D500.csv",
+        "extension": ".csv",
+        "execution_time_seconds": 1.0541,
+        "result": "success",
+        "find_cols": [
+            "CAMPO_1",
+            "CAMPO_2",
+            "CAMPO_3",
+            "CAMPO_4",
+            "CAMPO_5",
+            "CAMPO_6",
+            "CAMPO_7",
+            "CAMPO_8",
+            "CAMPO_9",
+            "CAMPO_10",
+            "CAMPO_11",
+            "CAMPO_12",
+            "CAMPO_13",
+            "CAMPO_14",
+            "CAMPO_15",
+            "CAMPO_16",
+            "CAMPO_17",
+            "CAMPO_18",
+            "CAMPO_19",
+            "CAMPO_20",
+            "CAMPO_21",
+            "CAMPO_22",
+            "CAMPO_23"
+        ],
+        "warning": "\nNão foi possível identificar com precisão as colunas do arquivo.",
+        "failure_reason": null,
+        "suggested_solution": null
+    },
+    {
+        "path": "Tratados/01_2019/EFD/D590.csv",
+        "extension": ".csv",
+        "execution_time_seconds": 1.0541,
+        "result": "success",
+        "find_cols": [
+            "CAMPO_1",
+            "CAMPO_2",
+            "CAMPO_3",
+            "CAMPO_4",
+            "CAMPO_5",
+            "CAMPO_6",
+            "CAMPO_7",
+            "CAMPO_8",
+            "CAMPO_9",
+            "CAMPO_10"
+        ],
+        "warning": "\nNão foi possível identificar com precisão as colunas do arquivo.",
+        "failure_reason": null,
+        "suggested_solution": null
+    },
+    {
+        "path": "Tratados/01_2019/EFD/D990.csv",
+        "extension": ".csv",
+        "execution_time_seconds": 1.0541,
+        "result": "success",
+        "find_cols": [
+            "CAMPO_1"
+        ],
+        "warning": "\nNão foi possível identificar com precisão as colunas do arquivo.",
+        "failure_reason": null,
+        "suggested_solution": null
+    },
+    {
+        "path": "Tratados/01_2019/EFD/E001.csv",
+        "extension": ".csv",
+        "execution_time_seconds": 1.0541,
+        "result": "success",
+        "find_cols": [
+            "CAMPO_1"
+        ],
+        "warning": "\nNão foi possível identificar com precisão as colunas do arquivo.",
+        "failure_reason": null,
+        "suggested_solution": null
+    },
+    {
+        "path": "Tratados/01_2019/EFD/E100.csv",
+        "extension": ".csv",
+        "execution_time_seconds": 1.0541,
+        "result": "success",
+        "find_cols": [
+            "CAMPO_1",
+            "CAMPO_2"
+        ],
+        "warning": "\nNão foi possível identificar com precisão as colunas do arquivo.",
+        "failure_reason": null,
+        "suggested_solution": null
+    },
+    {
+        "path": "Tratados/01_2019/EFD/E110.csv",
+        "extension": ".csv",
+        "execution_time_seconds": 1.0541,
+        "result": "success",
+        "find_cols": [
+            "CAMPO_1",
+            "CAMPO_2",
+            "CAMPO_3",
+            "CAMPO_4",
+            "CAMPO_5",
+            "CAMPO_6",
+            "CAMPO_7",
+            "CAMPO_8",
+            "CAMPO_9",
+            "CAMPO_10",
+            "CAMPO_11",
+            "CAMPO_12",
+            "CAMPO_13",
+            "CAMPO_14"
+        ],
+        "warning": "\nNão foi possível identificar com precisão as colunas do arquivo.",
+        "failure_reason": null,
+        "suggested_solution": null
+    },
+    {
+        "path": "Tratados/01_2019/EFD/E111.csv",
+        "extension": ".csv",
+        "execution_time_seconds": 1.0541,
+        "result": "success",
+        "find_cols": [
+            "CAMPO_1",
+            "CAMPO_2",
+            "CAMPO_3"
+        ],
+        "warning": "\nNão foi possível identificar com precisão as colunas do arquivo.",
+        "failure_reason": null,
+        "suggested_solution": null
+    },
+    {
+        "path": "Tratados/01_2019/EFD/E200.csv",
+        "extension": ".csv",
+        "execution_time_seconds": 1.0541,
+        "result": "success",
+        "find_cols": [
+            "CAMPO_1",
+            "CAMPO_2",
+            "CAMPO_3"
+        ],
+        "warning": "\nNão foi possível identificar com precisão as colunas do arquivo.",
+        "failure_reason": null,
+        "suggested_solution": null
+    },
+    {
+        "path": "Tratados/01_2019/EFD/E210.csv",
+        "extension": ".csv",
+        "execution_time_seconds": 1.0541,
+        "result": "success",
+        "find_cols": [
+            "CAMPO_1",
+            "CAMPO_2",
+            "CAMPO_3",
+            "CAMPO_4",
+            "CAMPO_5",
+            "CAMPO_6",
+            "CAMPO_7",
+            "CAMPO_8",
+            "CAMPO_9",
+            "CAMPO_10",
+            "CAMPO_11",
+            "CAMPO_12",
+            "CAMPO_13",
+            "CAMPO_14"
+        ],
+        "warning": "\nNão foi possível identificar com precisão as colunas do arquivo.",
+        "failure_reason": null,
+        "suggested_solution": null
+    },
+    {
+        "path": "Tratados/01_2019/EFD/E250.csv",
+        "extension": ".csv",
+        "execution_time_seconds": 1.0541,
+        "result": "success",
+        "find_cols": [
+            "CAMPO_1",
+            "CAMPO_2",
+            "CAMPO_3",
+            "CAMPO_4",
+            "CAMPO_5",
+            "CAMPO_6",
+            "CAMPO_7",
+            "CAMPO_8",
+            "CAMPO_9"
+        ],
+        "warning": "\nNão foi possível identificar com precisão as colunas do arquivo.",
+        "failure_reason": null,
+        "suggested_solution": null
+    },
+    {
+        "path": "Tratados/01_2019/EFD/E300.csv",
+        "extension": ".csv",
+        "execution_time_seconds": 1.0541,
+        "result": "success",
+        "find_cols": [
+            "CAMPO_1",
+            "CAMPO_2",
+            "CAMPO_3"
+        ],
+        "warning": "\nNão foi possível identificar com precisão as colunas do arquivo.",
+        "failure_reason": null,
+        "suggested_solution": null
+    },
+    {
+        "path": "Tratados/01_2019/EFD/E310.csv",
+        "extension": ".csv",
+        "execution_time_seconds": 1.0541,
+        "result": "success",
+        "find_cols": [
+            "CAMPO_1",
+            "CAMPO_2",
+            "CAMPO_3",
+            "CAMPO_4",
+            "CAMPO_5",
+            "CAMPO_6",
+            "CAMPO_7",
+            "CAMPO_8",
+            "CAMPO_9",
+            "CAMPO_10",
+            "CAMPO_11",
+            "CAMPO_12",
+            "CAMPO_13",
+            "CAMPO_14",
+            "CAMPO_15",
+            "CAMPO_16",
+            "CAMPO_17",
+            "CAMPO_18",
+            "CAMPO_19",
+            "CAMPO_20",
+            "CAMPO_21"
+        ],
+        "warning": "\nNão foi possível identificar com precisão as colunas do arquivo.",
+        "failure_reason": null,
+        "suggested_solution": null
+    },
+    {
+        "path": "Tratados/01_2019/EFD/E500.csv",
+        "extension": ".csv",
+        "execution_time_seconds": 1.0541,
+        "result": "success",
+        "find_cols": [
+            "CAMPO_1",
+            "CAMPO_2",
+            "CAMPO_3"
+        ],
+        "warning": "\nNão foi possível identificar com precisão as colunas do arquivo.",
+        "failure_reason": null,
+        "suggested_solution": null
+    },
+    {
+        "path": "Tratados/01_2019/EFD/E510.csv",
+        "extension": ".csv",
+        "execution_time_seconds": 1.0541,
+        "result": "success",
+        "find_cols": [
+            "CAMPO_1",
+            "CAMPO_2",
+            "CAMPO_3",
+            "CAMPO_4",
+            "CAMPO_5"
+        ],
+        "warning": "\nNão foi possível identificar com precisão as colunas do arquivo.",
+        "failure_reason": null,
+        "suggested_solution": null
+    },
+    {
+        "path": "Tratados/01_2019/EFD/E520.csv",
+        "extension": ".csv",
+        "execution_time_seconds": 1.0541,
+        "result": "success",
+        "find_cols": [
+            "CAMPO_1",
+            "CAMPO_2",
+            "CAMPO_3",
+            "CAMPO_4",
+            "CAMPO_5",
+            "CAMPO_6",
+            "CAMPO_7"
+        ],
+        "warning": "\nNão foi possível identificar com precisão as colunas do arquivo.",
+        "failure_reason": null,
+        "suggested_solution": null
+    },
+    {
+        "path": "Tratados/01_2019/EFD/E530.csv",
+        "extension": ".csv",
+        "execution_time_seconds": 1.0541,
+        "result": "success",
+        "find_cols": [
+            "CAMPO_1",
+            "CAMPO_2",
+            "CAMPO_3",
+            "CAMPO_4",
+            "CAMPO_5",
+            "CAMPO_6"
+        ],
+        "warning": "\nNão foi possível identificar com precisão as colunas do arquivo.",
+        "failure_reason": null,
+        "suggested_solution": null
+    },
+    {
+        "path": "Tratados/01_2019/EFD/E990.csv",
+        "extension": ".csv",
+        "execution_time_seconds": 1.0541,
+        "result": "success",
+        "find_cols": [
+            "CAMPO_1"
+        ],
+        "warning": "\nNão foi possível identificar com precisão as colunas do arquivo.",
+        "failure_reason": null,
+        "suggested_solution": null
+    },
+    {
+        "path": "Tratados/01_2019/EFD/G001.csv",
+        "extension": ".csv",
+        "execution_time_seconds": 1.0541,
+        "result": "success",
+        "find_cols": [
+            "CAMPO_1"
+        ],
+        "warning": "\nNão foi possível identificar com precisão as colunas do arquivo.",
+        "failure_reason": null,
+        "suggested_solution": null
+    },
+    {
+        "path": "Tratados/01_2019/EFD/G110.csv",
+        "extension": ".csv",
+        "execution_time_seconds": 1.0541,
+        "result": "success",
+        "find_cols": [
+            "CAMPO_1",
+            "CAMPO_2",
+            "CAMPO_3",
+            "CAMPO_4",
+            "CAMPO_5",
+            "CAMPO_6",
+            "CAMPO_7",
+            "CAMPO_8",
+            "CAMPO_9"
+        ],
+        "warning": "\nNão foi possível identificar com precisão as colunas do arquivo.",
+        "failure_reason": null,
+        "suggested_solution": null
+    },
+    {
+        "path": "Tratados/01_2019/EFD/G125.csv",
+        "extension": ".csv",
+        "execution_time_seconds": 1.0541,
+        "result": "success",
+        "find_cols": [
+            "CAMPO_1",
+            "CAMPO_2",
+            "CAMPO_3",
+            "CAMPO_4",
+            "CAMPO_5",
+            "CAMPO_6",
+            "CAMPO_7",
+            "CAMPO_8",
+            "CAMPO_9"
+        ],
+        "warning": "\nNão foi possível identificar com precisão as colunas do arquivo.",
+        "failure_reason": null,
+        "suggested_solution": null
+    },
+    {
+        "path": "Tratados/01_2019/EFD/G130.csv",
+        "extension": ".csv",
+        "execution_time_seconds": 1.0541,
+        "result": "success",
+        "find_cols": [
+            "CAMPO_1",
+            "CAMPO_2",
+            "CAMPO_3",
+            "CAMPO_4",
+            "CAMPO_5",
+            "CAMPO_6",
+            "CAMPO_7"
+        ],
+        "warning": "\nNão foi possível identificar com precisão as colunas do arquivo.",
+        "failure_reason": null,
+        "suggested_solution": null
+    },
+    {
+        "path": "Tratados/01_2019/EFD/G140.csv",
+        "extension": ".csv",
+        "execution_time_seconds": 1.0541,
+        "result": "success",
+        "find_cols": [
+            "CAMPO_1",
+            "CAMPO_2"
+        ],
+        "warning": "\nNão foi possível identificar com precisão as colunas do arquivo.",
+        "failure_reason": null,
+        "suggested_solution": null
+    },
+    {
+        "path": "Tratados/01_2019/EFD/G990.csv",
+        "extension": ".csv",
+        "execution_time_seconds": 1.0541,
+        "result": "success",
+        "find_cols": [
+            "CAMPO_1"
+        ],
+        "warning": "\nNão foi possível identificar com precisão as colunas do arquivo.",
+        "failure_reason": null,
+        "suggested_solution": null
+    },
+    {
+        "path": "Tratados/01_2019/EFD/H001.csv",
+        "extension": ".csv",
+        "execution_time_seconds": 1.0541,
+        "result": "success",
+        "find_cols": [
+            "CAMPO_1"
+        ],
+        "warning": "\nNão foi possível identificar com precisão as colunas do arquivo.",
+        "failure_reason": null,
+        "suggested_solution": null
+    },
+    {
+        "path": "Tratados/01_2019/EFD/H990.csv",
+        "extension": ".csv",
+        "execution_time_seconds": 1.0541,
+        "result": "success",
+        "find_cols": [
+            "CAMPO_1"
+        ],
+        "warning": "\nNão foi possível identificar com precisão as colunas do arquivo.",
+        "failure_reason": null,
+        "suggested_solution": null
+    },
+    {
+        "path": "Tratados/01_2019/EFD/K001.csv",
+        "extension": ".csv",
+        "execution_time_seconds": 1.0541,
+        "result": "success",
+        "find_cols": [
+            "CAMPO_1"
+        ],
+        "warning": "\nNão foi possível identificar com precisão as colunas do arquivo.",
+        "failure_reason": null,
+        "suggested_solution": null
+    },
+    {
+        "path": "Tratados/01_2019/EFD/K100.csv",
+        "extension": ".csv",
+        "execution_time_seconds": 1.0541,
+        "result": "success",
+        "find_cols": [
+            "CAMPO_1",
+            "CAMPO_2"
+        ],
+        "warning": "\nNão foi possível identificar com precisão as colunas do arquivo.",
+        "failure_reason": null,
+        "suggested_solution": null
+    },
+    {
+        "path": "Tratados/01_2019/EFD/K200.csv",
+        "extension": ".csv",
+        "execution_time_seconds": 1.0541,
+        "result": "success",
+        "find_cols": [
+            "CAMPO_1",
+            "CAMPO_2",
+            "CAMPO_3",
+            "CAMPO_4",
+            "CAMPO_5"
+        ],
+        "warning": "\nNão foi possível identificar com precisão as colunas do arquivo.",
+        "failure_reason": null,
+        "suggested_solution": null
+    },
+    {
+        "path": "Tratados/01_2019/EFD/K230.csv",
+        "extension": ".csv",
+        "execution_time_seconds": 1.0541,
+        "result": "success",
+        "find_cols": [
+            "CAMPO_1",
+            "CAMPO_2",
+            "CAMPO_3",
+            "CAMPO_4",
+            "CAMPO_5"
+        ],
+        "warning": "\nNão foi possível identificar com precisão as colunas do arquivo.",
+        "failure_reason": null,
+        "suggested_solution": null
+    },
+    {
+        "path": "Tratados/01_2019/EFD/K235.csv",
+        "extension": ".csv",
+        "execution_time_seconds": 1.0541,
+        "result": "success",
+        "find_cols": [
+            "CAMPO_1",
+            "CAMPO_2",
+            "CAMPO_3",
+            "CAMPO_4"
+        ],
+        "warning": "\nNão foi possível identificar com precisão as colunas do arquivo.",
+        "failure_reason": null,
+        "suggested_solution": null
+    },
+    {
+        "path": "Tratados/01_2019/EFD/K990.csv",
+        "extension": ".csv",
+        "execution_time_seconds": 1.0541,
+        "result": "success",
+        "find_cols": [
+            "CAMPO_1"
+        ],
+        "warning": "\nNão foi possível identificar com precisão as colunas do arquivo.",
+        "failure_reason": null,
+        "suggested_solution": null
+    },
+    {
+        "path": "Tratados/01_2019/EFD/1001.csv",
+        "extension": ".csv",
+        "execution_time_seconds": 1.0541,
+        "result": "success",
+        "find_cols": [
+            "CAMPO_1"
+        ],
+        "warning": "\nNão foi possível identificar com precisão as colunas do arquivo.",
+        "failure_reason": null,
+        "suggested_solution": null
+    },
+    {
+        "path": "Tratados/01_2019/EFD/1010.csv",
+        "extension": ".csv",
+        "execution_time_seconds": 1.0541,
+        "result": "success",
+        "find_cols": [
+            "CAMPO_1",
+            "CAMPO_2",
+            "CAMPO_3",
+            "CAMPO_4",
+            "CAMPO_5",
+            "CAMPO_6",
+            "CAMPO_7",
+            "CAMPO_8",
+            "CAMPO_9",
+            "CAMPO_10",
+            "CAMPO_11",
+            "CAMPO_12"
+        ],
+        "warning": "\nNão foi possível identificar com precisão as colunas do arquivo.",
+        "failure_reason": null,
+        "suggested_solution": null
+    },
+    {
+        "path": "Tratados/01_2019/EFD/1990.csv",
+        "extension": ".csv",
+        "execution_time_seconds": 1.0541,
+        "result": "success",
+        "find_cols": [
+            "CAMPO_1"
+        ],
+        "warning": "\nNão foi possível identificar com precisão as colunas do arquivo.",
+        "failure_reason": null,
+        "suggested_solution": null
+    },
+    {
+        "path": "Tratados/01_2019/EFD/9001.csv",
+        "extension": ".csv",
+        "execution_time_seconds": 1.0541,
+        "result": "success",
+        "find_cols": [
+            "IND_MOV"
+        ],
+        "warning": "",
+        "failure_reason": null,
+        "suggested_solution": null
+    },
+    {
+        "path": "Tratados/01_2019/EFD/9900.csv",
+        "extension": ".csv",
+        "execution_time_seconds": 1.0541,
+        "result": "success",
+        "find_cols": [
+            "REG_BLC",
+            "QTD_REG_BLC"
+        ],
+        "warning": "",
+        "failure_reason": null,
+        "suggested_solution": null
+    },
+    {
+        "path": "Tratados/01_2019/EFD/9990.csv",
+        "extension": ".csv",
+        "execution_time_seconds": 1.0541,
+        "result": "success",
+        "find_cols": [
+            "QTD_LIN_9"
+        ],
+        "warning": "",
+        "failure_reason": null,
+        "suggested_solution": null
+    },
+    {
+        "path": "Tratados/01_2019/EFD/9999.csv",
+        "extension": ".csv",
+        "execution_time_seconds": 1.0541,
+        "result": "success",
+        "find_cols": [
+            "QTD_LIN"
+        ],
+        "warning": "",
+        "failure_reason": null,
+        "suggested_solution": null
+    },
+    {
+        "raw": "path"
+    },
+    {
+        "raw": "extension"
+    },
+    {
+        "raw": "execution_time_seconds"
+    },
+    {
+        "raw": "result"
+    },
+    {
+        "raw": "find_cols"
+    },
+    {
+        "raw": "warning"
+    },
+    {
+        "raw": "failure_reason"
+    },
+    {
+        "raw": "suggested_solution"
+    },
+    {
+        "path": "Arquivos/Copy of GMB_Controle de Compensaçoes Reintegra 2019 a 2022.xlsx",
+        "extension": ".xlsx",
+        "execution_time_seconds": 0.0,
+        "result": "failure",
+        "find_cols": [],
+        "warning": null,
+        "failure_reason": "Erro desconhecido ao tratar o arquivo: Expecting ',' delimiter: line 54 column 344 (char 15654)",
+        "suggested_solution": "Verifique se o arquivo realmente existe e se o formato está correto."
+    },
+    {
+        "path": "Arquivos/13868745219202388_000033_000033_COPIA_PEDIDO DE RESTITUICAO-COMPENSACAO-RESSARCIMENTO_260303105838.pdf",
+        "extension": ".pdf",
+        "execution_time_seconds": 0.0,
+        "result": "failure",
+        "find_cols": [],
+        "warning": null,
+        "failure_reason": "Arquivo possui um formato ou nomenclatura não suportada",
+        "suggested_solution": "Verifique o formato e nomenclatura e crie uma função de tratamento caso necessário."
+    },
+    {
+        "path": "Tratados/Transferência__QuadroResumo_Principal_3T2022.csv",
+        "extension": ".csv",
+        "execution_time_seconds": 0.0002,
+        "result": "success",
+        "find_cols": [
+            "Descrição",
+            "Valor"
+        ],
+        "warning": "",
+        "failure_reason": null,
+        "suggested_solution": null
+    },
+    {
+        "path": "Tratados/Transferência__TransferenciaDetalhada_59275792000150_3T2022.csv",
+        "extension": ".csv",
+        "execution_time_seconds": 0.0001,
+        "result": "success",
+        "find_cols": [
+            "CNPJ Destino",
+            "Valor de Transferência",
+            "Porcentagem de Transferência"
+        ],
+        "warning": "",
+        "failure_reason": null,
+        "suggested_solution": null
+    },
+    {
+        "path": "Tratados/Transferência__QuadroResumo_59275792000826_3T2022.csv",
+        "extension": ".csv",
+        "execution_time_seconds": 0.0001,
+        "result": "success",
+        "find_cols": [
+            "Descrição",
+            "Valor"
+        ],
+        "warning": "",
+        "failure_reason": null,
+        "suggested_solution": null
+    },
+    {
+        "path": "Tratados/Transferência__TransferenciaDetalhada_59275792000826_3T2022.csv",
+        "extension": ".csv",
+        "execution_time_seconds": 0.0001,
+        "result": "success",
+        "find_cols": [
+            "CNPJ Destino",
+            "Valor de Transferência",
+            "Porcentagem de Transferência"
+        ],
+        "warning": "",
+        "failure_reason": null,
+        "suggested_solution": null
+    },
+    {
+        "path": "Tratados/Transferência__QuadroResumo_59275792009610_3T2022.csv",
+        "extension": ".csv",
+        "execution_time_seconds": 0.0001,
+        "result": "success",
+        "find_cols": [
+            "Descrição",
+            "Valor"
+        ],
+        "warning": "",
+        "failure_reason": null,
+        "suggested_solution": null
+    },
+    {
+        "path": "Tratados/Transferência__TransferenciaDetalhada_59275792009610_3T2022.csv",
+        "extension": ".csv",
+        "execution_time_seconds": 0.0001,
+        "result": "success",
+        "find_cols": [
+            "CNPJ Destino",
+            "Valor de Transferência",
+            "Porcentagem de Transferência"
+        ],
+        "warning": "",
+        "failure_reason": null,
+        "suggested_solution": null
+    },
+    {
+        "path": "Tratados/Transferência__QuadroResumo_59275792003680_3T2022.csv",
+        "extension": ".csv",
+        "execution_time_seconds": 0.0001,
+        "result": "success",
+        "find_cols": [
+            "Descrição",
+            "Valor"
+        ],
+        "warning": "",
+        "failure_reason": null,
+        "suggested_solution": null
+    },
+    {
+        "path": "Tratados/Transferência__TransferenciaDetalhada_59275792003680_3T2022.csv",
+        "extension": ".csv",
+        "execution_time_seconds": 0.0001,
+        "result": "success",
+        "find_cols": [
+            "CNPJ Destino",
+            "Valor de Transferência",
+            "Porcentagem de Transferência"
+        ],
+        "warning": "",
+        "failure_reason": null,
+        "suggested_solution": null
+    },
+    {
+        "path": "Tratados/Transferência__QuadroResumo_59275792002012_3T2022.csv",
+        "extension": ".csv",
+        "execution_time_seconds": 0.0001,
+        "result": "success",
+        "find_cols": [
+            "Descrição",
+            "Valor"
+        ],
+        "warning": "",
+        "failure_reason": null,
+        "suggested_solution": null
+    },
+    {
+        "path": "Tratados/Transferência__TransferenciaDetalhada_59275792002012_3T2022.csv",
+        "extension": ".csv",
+        "execution_time_seconds": 0.0001,
+        "result": "success",
+        "find_cols": [
+            "CNPJ Destino",
+            "Valor de Transferência",
+            "Porcentagem de Transferência"
+        ],
+        "warning": "",
+        "failure_reason": null,
+        "suggested_solution": null
+    },
+    {
+        "path": "Tratados/Transferência__QuadroResumo_59275792009700_3T2022.csv",
+        "extension": ".csv",
+        "execution_time_seconds": 0.0001,
+        "result": "success",
+        "find_cols": [
+            "Descrição",
+            "Valor"
+        ],
+        "warning": "",
+        "failure_reason": null,
+        "suggested_solution": null
+    },
+    {
+        "path": "Tratados/Transferência__TransferenciaDetalhada_59275792009700_3T2022.csv",
+        "extension": ".csv",
+        "execution_time_seconds": 0.0001,
+        "result": "success",
+        "find_cols": [
+            "CNPJ Destino",
+            "Valor de Transferência",
+            "Porcentagem de Transferência"
+        ],
+        "warning": "",
+        "failure_reason": null,
+        "suggested_solution": null
+    },
+    {
+        "path": "Tratados/SPED__TransferenciaOperacoes.csv",
+        "extension": ".csv",
+        "execution_time_seconds": 4.7443,
+        "result": "success",
+        "find_cols": [
+            "CAMPO_0",
+            "CNPJ",
+            "Inscrição Estadual",
+            "Período",
+            "Tipo Operação",
+            "Indicador Emitente",
+            "Código Participante",
+            "CNPJ Participante",
+            "CPF Participante",
+            "Nome Participante",
+            "UF Origem/Destino",
+            "Código Município",
+            "Município",
+            "Modelo",
+            "Situação",
+            "Série",
+            "Número Documento",
+            "Chave NF-e",
+            "Data Documento",
+            "Data Entrada/Saída",
+            "Vlr Documento",
+            "Indicador Pagamento",
+            "Vlr Desconto NF",
+            "Vlr Abatimento NT",
+            "Vlr Mercadoria",
+            "Indicador Frete",
+            "Vlr Frete",
+            "Vlr Seguro",
+            "Vlr Outras DA",
+            "Vlr Base Cálculo ICMS - C100",
+            "Vlr ICMS - C100",
+            "Vlr Base Cálculo ICMS ST - C100",
+            "Vlr ICMS ST - C100",
+            "Vlr IPI - C100",
+            "Vlr PIS - C100",
+            "Vlr Cofins - C100",
+            "Vlr PIS ST - C100",
+            "Vlr Cofins ST - C100",
+            "CST ICMS",
+            "CFOP",
+            "Descrição CFOP",
+            "CFOP Faturamento",
+            "Alíquota ICMS",
+            "Vlr Operação",
+            "Vlr Base Cálculo ICMS",
+            "Vlr ICMS",
+            "Vlr Base Cálculo ICMS ST",
+            "Vlr ICMS ST",
+            "Vlr Redução Base ICMS",
+            "Vlr IPI",
+            "Código Observação",
+            "Descrição Observação Lançamento Fiscal",
+            "Periodo",
+            "CNPJ Ajustado"
+        ],
+        "warning": "",
+        "failure_reason": null,
+        "suggested_solution": null
+    }
+]

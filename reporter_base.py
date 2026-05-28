@@ -1,0 +1,38 @@
+from dataclasses import asdict, dataclass, field
+from typing import Optional
+from pathlib import Path
+
+@dataclass
+class Report:
+    path: str
+    extension: str
+    execution_time_seconds: float = 0.0
+    result: str = "success"
+    find_cols: list[str] = field(default_factory=list)
+    warning: Optional[str] = None
+    failure_reason: Optional[str] = None
+    suggested_solution: Optional[str] = None
+
+def failure(reason: str, solution: str, file_path:Path) -> dict:
+    return asdict(Report(
+        path=str(file_path),
+        extension=file_path.suffix,
+        result="failure",
+        failure_reason=reason,
+        suggested_solution=solution,
+    ))
+
+def success(file_path:Path, find_cols:list, execution_time_seconds:float, warning:str="") -> dict:
+    if "CAMPO_1" in find_cols:
+        warning +="\nNão foi possível identificar com precisão as colunas do arquivo."
+    
+    return asdict(Report(
+        path=str(file_path),
+        extension=file_path.suffix,
+        result="success",
+        find_cols=find_cols,
+        execution_time_seconds=execution_time_seconds,
+        warning=warning
+    ))
+
+print(success(Path("test.py"), find_cols=["col1", "col2"], execution_time_seconds=32.4,))

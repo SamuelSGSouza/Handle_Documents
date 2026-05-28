@@ -1,0 +1,182 @@
+{
+    "0001": [
+        "IND_DAD"
+    ],
+
+    "0007": [
+        "COD_ENT_REF"
+    ],
+
+    "0990": [
+        "QTD_LIN_0"
+    ],
+
+    "C001": [
+        "IND_MOV"
+    ],
+
+    "C040": [
+        "COD_MOD", "ECF_MOD", "ECF_FAB"
+    ],
+
+    "C100": [
+        "IND_OPER", "IND_EMIT", "COD_PART", "COD_MOD", "COD_SIT", "SER", "NUM_DOC",
+        "CHV_DFE", "DT_DOC", "DT_E_S", "VL_DOC", "IND_PGTO", "VL_DESC", "VL_ABAT_NT",
+        "VL_MERC", "IND_FRT", "VL_FRT", "VL_SEG", "VL_OUT_DA", "VL_BC_ICMS", "VL_ICMS",
+        "VL_BC_ICMS_ST", "VL_ICMS_ST", "VL_IPI", "VL_PIS", "VL_COFINS", "VL_PIS_ST", "VL_COFINS_ST"
+    ],
+
+    "C150": [
+        "COD_PART", "VEIC_ID", "COD_MOD", "SER", "SUB", "NUM_DOC",
+        "DT_DOC", "CST_ICMS", "CFOP", "ALIQ_ICMS", "VL_OPR",
+        "VL_DESC", "VL_BC_ICMS", "VL_ICMS", "VL_BC_ICMS_ST",
+        "VL_ICMS_ST", "COD_OBS"
+    ],
+
+    "C155": [
+        "CST_ICMS", "CFOP", "ALIQ_ICMS", "VL_OPR", "VL_DESC",
+        "VL_BC_ICMS", "VL_ICMS", "VL_BC_ICMS_ST", "VL_ICMS_ST",
+        "VL_RED_BC", "COD_OBS"
+    ],
+
+    "C170": [
+        "NUM_ITEM", "COD_ITEM", "DESCR_COMPL", "QTD", "UNID", "VL_ITEM", "VL_DESC",
+        "IND_MOV", "CST_ICMS", "CFOP", "COD_NAT", "VL_BC_ICMS", "ALIQ_ICMS", "VL_ICMS",
+        "VL_BC_ICMS_ST", "ALIQ_ST", "VL_ICMS_ST", "IND_APUR", "CST_IPI", "COD_ENQ",
+        "VL_BC_IPI", "ALIQ_IPI", "VL_IPI", "CST_PIS", "VL_BC_PIS", "ALIQ_PIS_PERCENTUAL",
+        "QUANT_BC_PIS", "ALIQ_PIS_REAIS", "VL_PIS", "CST_COFINS", "VL_BC_COFINS",
+        "ALIQ_COFINS_PERCENTUAL", "QUANT_BC_COFINS", "ALIQ_COFINS_REAIS", "VL_COFINS",
+        "COD_CTA", "VL_ABAT_NT"
+    ],
+
+    "C190": [
+        "CST_ICMS", "CFOP", "ALIQ_ICMS", "VL_OPR", "VL_BC_ICMS", "VL_ICMS",
+        "VL_BC_ICMS_ST", "VL_ICMS_ST", "VL_RED_BC", "VL_IPI", "COD_OBS"
+    ],
+
+    "C600": [
+        "COD_MOD", "COD_MUN", "SER", "SUB", "COD_CONS", "QTD_CONS",
+        "QTD_CANC", "DT_DOC", "VL_DOC", "VL_DESC", "CONS", "VL_FORN",
+        "VL_SERV_NT", "VL_TERC", "VL_DA", "VL_BC_ICMS", "VL_ICMS",
+        "VL_PIS", "VL_COFINS"
+    ],
+
+    "C650": [
+        "COD_MOD", "ECF_MOD", "ECF_FAB", "ECF_CX", "NUM_DOC",
+        "DT_DOC", "CRO", "CRZ", "VL_BRT", "GT_FIN", "VL_BC_ICMS",
+        "VL_ICMS", "VL_BC_ICMS_ST", "VL_ICMS_ST", "VL_COFINS", "VL_PIS"
+    ],
+
+    "C990": [
+        "QTD_LIN_C"
+    ],
+
+    "D100": [
+        "IND_OPER", "IND_EMIT", "COD_PART", "COD_MOD", "COD_SIT", "SER", "SUB",
+        "NUM_DOC", "CHV_CTE", "DT_DOC", "DT_A_P", "TP_CT-E", "CHV_CTE_REF",
+        "VL_DOC", "VL_DESC", "IND_FRT", "VL_SERV", "VL_BC_ICMS", "VL_ICMS",
+        "VL_NT", "COD_INF", "COD_CTA"
+    ],
+
+    "D190": [
+        "CST_ICMS", "CFOP", "ALIQ_ICMS", "VL_OPR", "VL_BC_ICMS", "VL_ICMS",
+        "VL_RED_BC", "COD_OBS"
+    ],
+
+    "H005": [
+        "DT_INV", "VL_INV", "IND_MOT_INV"
+    ],
+
+    "H010": [
+        "COD_ITEM", "UNID", "QTD", "VL_UNIT", "VL_ITEM", "IND_PROP",
+        "COD_PART", "TXT_COMPL", "COD_CTA", "VL_ITEM_IR"
+    ],
+
+    "I001": [
+        "IND_DAD"
+    ],
+
+    "I010": [
+        "IND_ESC", "COD_VER_LC", "COD_PLAN_REF"
+    ],
+
+    "I030": [
+        "DNRC_ABERT", "NUM_ORD", "NAT_LIVR", "QTD_LIN", "NOME",
+        "NIRE", "CNPJ", "DT_ARQ", "DT_ARQ_CONV", "DESC_MUN"
+    ],
+
+    "I050": [
+        "DT_ALT", "COD_NAT", "IND_CTA", "NIVEL", "COD_CTA",
+        "COD_CTA_SUP", "CTA", "COD_CTA_REF"
+    ],
+
+    "I051": [
+        "COD_ENT_REF", "COD_CTA_REF"
+    ],
+
+    "I052": [
+        "COD_AGL", "IND_CTA", "COD_CTA", "COD_CTA_REF"
+    ],
+
+    "I100": [
+        "DT_ALT", "COD_CCUS", "CCUS"
+    ],
+
+    "I150": [
+        "DT_INI", "DT_FIN"
+    ],
+
+    "I155": [
+        "COD_CTA", "COD_CCUS", "VL_SLD_INI", "IND_DC_INI",
+        "VL_DEB", "VL_CRED", "VL_SLD_FIN", "IND_DC_FIN"
+    ],
+
+    "I200": [
+        "NUM_LCTO", "DT_LCTO", "VL_LCTO", "IND_LCTO"
+    ],
+
+    "I250": [
+        "COD_CTA", "COD_CCUS", "VL_DC", "IND_DC", "NUM_ARQ",
+        "COD_HIST_PAD", "HIST", "COD_PART"
+    ],
+
+    "I990": [
+        "QTD_LIN_I"
+    ],
+
+    "J001": [
+        "IND_DAD"
+    ],
+
+    "J900": [
+        "NUM_ARQ", "HASH"
+    ],
+
+    "J930": [
+        "IDENT_NOM", "IDENT_CPF", "IDENT_QUALIF", "COD_ASSIN"
+    ],
+
+    "J935": [
+        "COD_HIST_FAT"
+    ],
+
+    "J990": [
+        "QTD_LIN_J"
+    ],
+
+    "9001": [
+        "IND_MOV"
+    ],
+
+    "9900": [
+        "REG_BLC", "QTD_REG_BLC"
+    ],
+
+    "9990": [
+        "QTD_LIN_9"
+    ],
+
+    "9999": [
+        "QTD_LIN"
+    ]
+}
