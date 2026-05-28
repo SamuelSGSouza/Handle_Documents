@@ -32,11 +32,11 @@ def _retorna_data(path):
 
     prompt = f""""
     A partir do nome do arquivo "{path}"
-    retorne o mẽs e ano de referẽncia no formato MM_YYYY
-    Não retorne comentários ou explicações, apenas o MM_YYYY
+    retorne o mẽs e ano de referẽncia no formato YYYY_MM
+    Não retorne comentários ou explicações, apenas o YYYY_MM
     Formatos de retorno válidos:
-    1. 01_2022
-    2. 12_2003
+    1. 2022_01
+    2. 2003_12
     """
 
     message = client.messages.create(
