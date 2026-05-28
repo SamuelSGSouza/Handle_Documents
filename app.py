@@ -19,7 +19,7 @@ import logging
 import threading
 import webbrowser
 from pathlib import Path
-
+import shutil
 from flask import Flask, jsonify, render_template_string, request
 
 # ---------------------------------------------------------------------------
@@ -833,7 +833,10 @@ def run():
     output_dir  = body.get("output_dir",  "Tratados")
     report_file = body.get("report_file", str(REPORT_FILE))
 
-    Path(output_dir).mkdir(parents=True, exist_ok=True)
+    output_path = Path(output_dir)
+    if output_path.exists():
+        shutil.rmtree(output_path)
+    output_path.mkdir(parents=True, exist_ok=True)
 
     t = threading.Thread(
         target=_run_conversor,
