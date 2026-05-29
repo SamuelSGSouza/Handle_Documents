@@ -5,6 +5,34 @@ from reporter_base import failure, success
 import csv
 from pathlib import Path
 import shutil
+import anthropic
+from utils.constants import API_KEY
+import os
+
+
+def _retorna_data(path, ):
+    client = anthropic.Anthropic(api_key=API_KEY)
+
+    prompt = f""""
+    A partir do nome do arquivo "{path}"
+    retorne o mẽs e ano de referẽncia no formato YYYY_MM
+    Não retorne comentários ou explicações, apenas o YYYY_MM
+    Se não encontrar o ano ou o mês, retorne substituindo o que faltar por 00. Exemplo com mês não encontrado: 2021_00
+    Se o ano for um range, retorne a data no formato YYYY-YYYY_00
+    Formatos de retorno válidos:
+    1. 2022_01
+    2. 2003_12
+    3. 2019_00
+    4. 0000_06
+    5. 2019-2022_00
+    """
+
+    message = client.messages.create(
+        model="claude-haiku-4-5-20251001",
+        max_tokens=7,
+        messages=[{"role": "user", "content": prompt}],
+    )
+    return message.content[0].text.strip()
 
 def parse_csv(file_path, output_dir):
     start_time = time.perf_counter()
@@ -15,14 +43,20 @@ def parse_csv(file_path, output_dir):
         colunas = df.columns.tolist()
         elapsed = round(time.perf_counter() - start_time, 4)
 
-        output_path = Path(output_dir) / Path(file_path).name  # define o destino
+        data_referencia = _retorna_data(file_path, )
+        ano = data_referencia.split("_")[0]
+        mes = data_referencia.split("_")[1]
+        root_output_dir = Path(output_dir) / ano / mes
+        os.makedirs(str(root_output_dir), exist_ok=True)
+
+        output_path = Path(root_output_dir) / Path(file_path).name  # define o destino
         shutil.copy2(file_path, output_path)                   # copia o arquivo
 
-        return success(
+        return [success(
             file_path=output_path,
             find_cols=colunas,
             execution_time_seconds=elapsed
-        )
+        ), ]
     except Exception as e:
         return failure(
             reason=f"Falha desconhecida: {e}",
@@ -67,4 +101,4 @@ def _detectar_encoding_csv(caminho, amostra=16000):
     return encoding
 
 if __name__ == "__main__":
-    result = parse_csv("Arquivos/Export_2021_V2__Export2021_InvoiceData.csv", "Tratados")
+    result = parse_csv("Arquivos/Export_2021__Export2021.csv", "Tratados")

@@ -34,7 +34,7 @@ import sys
 import time
 from pathlib import Path
 from typing import Any
-
+import traceback
 import anthropic
 import pyxlsb
 import openpyxl
@@ -42,23 +42,17 @@ from reporter_base import success, failure, Report
 from utils.constants import API_KEY
 # ── Configuração ──────────────────────────────────────────────────────────────
 
-SMALL_SHEET_ROWS = 500          # abas com até N linhas → Claude extrai tudo
+SMALL_SHEET_ROWS = 300          # abas com até N linhas → Claude extrai tudo
 PREVIEW_ROWS     = 60           # linhas de preview para abas grandes
 MODEL            = "claude-haiku-4-5-20251001"
 MAX_TOKENS       = 8192
 LOG_LEVEL        = logging.INFO
 
-log = logging.getLogger(__name__)
 
 
 # ── Helpers internos ──────────────────────────────────────────────────────────
 
-def _setup_logging(verbose: bool = False) -> None:
-    logging.basicConfig(
-        level=logging.DEBUG if verbose else LOG_LEVEL,
-        format="%(asctime)s [%(levelname)s] %(message)s",
-        datefmt="%H:%M:%S",
-    )
+
 
 
 def _read_sheet(wb_path: str, sheet_name: str) -> list[list[Any]]:
@@ -141,6 +135,29 @@ def _sanitize_filename(name: str) -> str:
     s = re.sub(r"_+", "_", s).strip("_")
     return s or "tabela"
 
+def _retorna_data(path, ):
+    client = anthropic.Anthropic(api_key=API_KEY)
+
+    prompt = f""""
+    A partir do nome do arquivo "{path}"
+    retorne o mẽs e ano de referẽncia no formato YYYY_MM
+    Não retorne comentários ou explicações, apenas o YYYY_MM
+    Se não encontrar o ano ou o mês, retorne substituindo o que faltar por 00. Exemplo com mês não encontrado: 2021_00
+    Se o ano for um range, retorne a data no formato YYYY-YYYY_00
+    Formatos de retorno válidos:
+    1. 2022_01
+    2. 2003_12
+    3. 2019_00
+    4. 0000_06
+    5. 2019-2022_00
+    """
+
+    message = client.messages.create(
+        model="claude-haiku-4-5-20251001",
+        max_tokens=7,
+        messages=[{"role": "user", "content": prompt}],
+    )
+    return message.content[0].text.strip()
 
 # ── Lógica de extração por tipo de aba ────────────────────────────────────────
 
@@ -193,9 +210,17 @@ Conteúdo da aba:
 {rows_text}
 """
     response = _call_claude(client, prompt)
-    log.debug("Resposta Claude (small):\n%s", response[:800])
 
-    spec = _extract_json(response)
+    try:
+        spec = _extract_json(response)
+    except Exception as e:
+        return [
+            failure(
+                reason=f"Erro ao receber resposta do claude sobre planilha pequena. \n O prompt enviado foi {prompt} \n\n\n E a resposta do claude foi {response}",
+                solution="",
+                file_path=str(input_path)
+            ),
+        ]
     tables = spec.get("tables", [])
 
     reports:list[Report] = []
@@ -208,14 +233,20 @@ Conteúdo da aba:
         columns = table.get("columns", [])
         data    = table.get("rows", [])
         if not data:
-            log.warning("  Tabela '%s' sem dados — pulando.", name)
             reports.append(failure(
                     reason =f"Aba '{name}' sem dados — pulando.",
                     solution="Verifique se essa aba da planilha realmente possui dados e se não estão corrompidos",
-                    file_path=input_path
+                    file_path=Path(input_path)
                 ))
             continue
-        out_path = output_dir / f"{sheet_slug}__{name}.csv"
+
+        data_referencia = _retorna_data(input_path, )
+        ano = data_referencia.split("_")[0]
+        mes = data_referencia.split("_")[1]
+        root_output_dir = output_dir / ano / mes
+        os.makedirs(str(root_output_dir), exist_ok=True)
+
+        out_path =  root_output_dir / f"{sheet_slug}__{name}.csv"
         with open(out_path, "w", newline="", encoding="utf-8") as f:
             writer = csv.writer(f,delimiter=";")
             if columns:
@@ -229,6 +260,7 @@ Conteúdo da aba:
         ))
         
     return reports
+
 
 
 def _process_large_sheet(
@@ -281,7 +313,6 @@ Preview da aba:
 {preview_text}
 """
     response = _call_claude(client, prompt)
-    log.debug("Resposta Claude (large):\n%s", response[:800])
 
     spec = _extract_json(response)
     tables = spec.get("tables", [])
@@ -299,7 +330,6 @@ Preview da aba:
         data_end   = table.get("data_end_row")  # None = até o fim
 
         if header_row is None or data_start is None:
-            log.warning("  Tabela '%s' sem header_row/data_start_row — pulando.", name)
             reports.append(failure(
                     reason =f"Aba '{name}' sem header_row/data_start_row — pulando.",
                     solution="Verifique se essa aba da planilha realmente possui dados e se não estão corrompidos",
@@ -310,7 +340,15 @@ Preview da aba:
         header = [str(v) if v is not None else f"CAMPO_{i}"
                   for i, v in enumerate(_trim_row(rows[header_row]))]
 
-        out_path = output_dir / f"{sheet_slug}__{name}.csv"
+
+        data_referencia = _retorna_data(input_path,)
+        ano = data_referencia.split("_")[0]
+        mes = data_referencia.split("_")[1]
+
+        root_output_dir = output_dir / ano / mes
+        os.makedirs(str(root_output_dir), exist_ok=True)
+
+        out_path =  root_output_dir / f"{sheet_slug}__{name}.csv"
         data_rows_written = 0
         with open(out_path, "w", newline="", encoding="utf-8") as f:
             writer = csv.writer(f, delimiter=";")
@@ -359,8 +397,6 @@ def xls_to_csvs(
         anthropic.AuthenticationError: Se a chave da API for inválida.
         ValueError: Se Claude retornar uma resposta sem JSON válido.
     """
-    _setup_logging(verbose)
-
     xls_path = Path(xls_path)
     if not xls_path.exists():
         return [
@@ -423,30 +459,13 @@ def xls_to_csvs(
     except Exception as e:
         return [
             failure(
-                reason=f"Erro desconhecido ao tratar o arquivo: {e}",
+                reason=f"Erro desconhecido ao tratar o arquivo: {traceback.format_exc()}",
                 solution="Verifique se o arquivo realmente existe e se o formato está correto.",
                 file_path=xls_path
             ),
         ]
 
 
-# ── CLI ───────────────────────────────────────────────────────────────────────
-
-def _build_parser() -> argparse.ArgumentParser:
-    parser = argparse.ArgumentParser(
-        description="Converte um .xlsb em CSVs usando a API do Claude.",
-        formatter_class=argparse.RawTextHelpFormatter,
-    )
-    parser.add_argument("xls_path", help="Caminho para o arquivo .xlsb")
-    parser.add_argument(
-        "--output-dir", "-o", default=".",
-        help="Diretório de saída (padrão: diretório atual)"
-    )
-    parser.add_argument(
-        "--verbose", "-v", action="store_true",
-        help="Logging em nível DEBUG"
-    )
-    return parser
 
 
 def parse_xls_to_csv(xls_path, output_dir) -> list[dict]:
@@ -468,5 +487,4 @@ def parse_xls_to_csv(xls_path, output_dir) -> list[dict]:
         ]
 
 if __name__ == "__main__":
-    reports = xls_to_csvs(xls_path="Arquivos/GM_ZFM ALC_ANEXO II_2022_3Tri.xlsb",output_dir="Tratados",)
-    print(reports)
+    reports = xls_to_csvs(xls_path="Arquivos/III/Customs - Exportação/Export 2020.xlsx",output_dir="Tratados",)

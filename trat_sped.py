@@ -34,9 +34,12 @@ def _retorna_data(path):
     A partir do nome do arquivo "{path}"
     retorne o mẽs e ano de referẽncia no formato YYYY_MM
     Não retorne comentários ou explicações, apenas o YYYY_MM
+    Se não encontrar o ano ou o mês, retorne substituindo o que faltar por 00. Exemplo com mês não encontrado: 2021_00
     Formatos de retorno válidos:
     1. 2022_01
     2. 2003_12
+    3. 2019_00
+    4. 0000_06
     """
 
     message = client.messages.create(
@@ -90,9 +93,15 @@ def parse_sped_to_csvs(sped_path: Path, output_dir: Path) -> list[dict]:
     """
     sped_path = Path(sped_path)
     output_dir = Path(output_dir)
+
+    data = _retorna_data(sped_path)
+    ano = data.split("_")[0]
+    mes = data.split("_")[1]
     output_path = (
         output_dir
-        / _retorna_data(sped_path)
+        / ano
+        / mes
+        / "SPED"
         / _retorna_tipo_sped(sped_path)
     )
     
@@ -100,7 +109,6 @@ def parse_sped_to_csvs(sped_path: Path, output_dir: Path) -> list[dict]:
     # --- Validação inicial ---
     is_valid, err_msg = validate_sped_file(sped_path)
     if not is_valid:
-        logger.error(err_msg)
         return [failure(
             file_path=sped_path,
             reason=err_msg or "Arquivo SPED inválido.",
@@ -183,7 +191,6 @@ def parse_sped_to_csvs(sped_path: Path, output_dir: Path) -> list[dict]:
         except Exception:
             elapsed = round(time.perf_counter() - start_time, 4)
             reason = traceback.format_exc()
-            logger.error("Erro ao processar o arquivo SPED: %s", reason)
             return [failure(
                 file_path=sped_path,
                 reason=reason,
@@ -194,7 +201,6 @@ def parse_sped_to_csvs(sped_path: Path, output_dir: Path) -> list[dict]:
             ),]
  
     elapsed = round(time.perf_counter() - start_time, 4)
-    logger.info("Processamento concluído. %s registros processados.", global_id)
  
     # Relatório de sucesso — um entry por tipo de registro gerado
     return [
@@ -207,5 +213,5 @@ def parse_sped_to_csvs(sped_path: Path, output_dir: Path) -> list[dict]:
     ]
 # Exemplo de uso:
 if __name__ == "__main__":
-    result = parse_sped_to_csvs(Path("Arquivos/59275792000150-636003724112-20190101-20190131-0-6AB91828942ECBB35F053441BFEBD0FD0E8C11BA-SPED-EFD.txt"), Path("Tratados/SPED/"))
+    result = parse_sped_to_csvs(Path("Arquivos/II/SPED 2019/59275792000150-636003724112-20190101-20190131-0-6AB91828942ECBB35F053441BFEBD0FD0E8C11BA-SPED-EFD.txt"), Path("Tratados"))
     

@@ -14,6 +14,8 @@ class Report:
     suggested_solution: Optional[str] = None
 
 def failure(reason: str, solution: str, file_path:Path) -> dict:
+    if type(file_path) ==str:
+        file_path = Path(file_path)
     return asdict(Report(
         path=str(file_path),
         extension=file_path.suffix,
@@ -25,7 +27,8 @@ def failure(reason: str, solution: str, file_path:Path) -> dict:
 def success(file_path:Path, find_cols:list, execution_time_seconds:float, warning:str="") -> dict:
     if "CAMPO_1" in find_cols:
         warning +="\nNão foi possível identificar com precisão as colunas do arquivo."
-    
+    if type(file_path) ==str:
+        file_path = Path(file_path)
     return asdict(Report(
         path=str(file_path),
         extension=file_path.suffix,
@@ -34,5 +37,3 @@ def success(file_path:Path, find_cols:list, execution_time_seconds:float, warnin
         execution_time_seconds=execution_time_seconds,
         warning=warning
     ))
-
-print(success(Path("test.py"), find_cols=["col1", "col2"], execution_time_seconds=32.4,))
