@@ -1,7 +1,7 @@
 import time
 import chardet
 import pandas as pd
-from reporter_base import failure, success
+from utils.reporter_base import failure, success
 import csv
 from pathlib import Path
 import shutil
