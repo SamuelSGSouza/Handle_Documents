@@ -46,7 +46,7 @@ def conversor(input_dir: str, output_dir: str, files_to_reload:list=[]) -> list[
 
     return all_reports
 
-def start_conversions(input_folder="Arquivos", output_folder="Resultados"):
+def start_conversions(input_folder="+ Documentos Recebidos", output_folder="Resultados"):
 
     path_relatorio_json = os.path.join(output_folder, "Relatório das Conversões.json")
     path_relatorio_csv = os.path.join(output_folder, "Relatório das Conversões.csv")
