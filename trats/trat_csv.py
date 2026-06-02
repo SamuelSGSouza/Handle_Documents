@@ -17,14 +17,19 @@ def _retorna_data(path, ):
     A partir do nome do arquivo "{path}"
     retorne o mẽs e ano de referẽncia no formato YYYY_MM
     Não retorne comentários ou explicações, apenas o YYYY_MM
+    Lembre-se que um ano só possui 12 meses e que o ano mais antigo será 1990.
+    Se não puder afirmar com precisão alguma das informações, prefira retornar 00
     Se não encontrar o ano ou o mês, retorne substituindo o que faltar por 00. Exemplo com mês não encontrado: 2021_00
-    Se o ano for um range, retorne a data no formato YYYY-YYYY_00
+    
     Formatos de retorno válidos:
     1. 2022_01
     2. 2003_12
     3. 2019_00
     4. 0000_06
-    5. 2019-2022_00
+    
+    Formatos de retorno Inválidos:
+    1. 1003_12
+    2. 2023_99
     """
 
     message = client.messages.create(
