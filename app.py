@@ -1,0 +1,126 @@
+"""
+Flask App - Sistema de Processamento de Pastas
+Advocacia · Seleção de pastas via janela nativa (tkinter) + Relatórios
+"""
+
+import threading
+import tkinter as tk
+from tkinter import filedialog
+from pathlib import Path
+from flask import Flask, render_template, request, redirect, url_for, flash, jsonify
+from trats.controler_trats import start_conversions
+
+
+app = Flask(__name__)
+app.secret_key = "advocacia-chave-secreta-2024"
+
+# ─── Tkinter: abre janela nativa de seleção de pasta ─────────────────────────
+
+def abrir_dialogo_pasta(titulo: str) -> str:
+    """
+    Abre a janela nativa do SO para selecionar uma pasta.
+    Roda na thread principal via threading.Event para não bloquear o Flask.
+
+    Args:
+        titulo: Título exibido na janela de seleção.
+
+    Returns:
+        Caminho absoluto selecionado, ou string vazia se cancelado.
+    """
+    resultado = {"caminho": ""}
+    evento = threading.Event()
+
+    def _abrir():
+        root = tk.Tk()
+        root.withdraw()           # esconde a janela root
+        root.attributes("-topmost", True)   # garante que fique na frente
+        caminho = filedialog.askdirectory(title=titulo, parent=root)
+        root.destroy()
+        resultado["caminho"] = caminho or ""
+        evento.set()
+
+    # tkinter precisa rodar na thread principal no Windows;
+    # no Linux/Mac roda normalmente em thread separada.
+    t = threading.Thread(target=_abrir, daemon=True)
+    t.start()
+    evento.wait(timeout=120)   # aguarda até 2 min o usuário escolher
+    return resultado["caminho"]
+
+
+# ─── Endpoint AJAX: abre o diálogo e devolve o caminho ───────────────────────
+
+@app.route("/selecionar-pasta")
+def selecionar_pasta():
+    """Abre janela nativa e retorna o caminho escolhido como JSON."""
+    tipo  = request.args.get("tipo", "entrada")
+    titulo = "Selecionar Pasta de Entrada" if tipo == "entrada" else "Selecionar Pasta de Saída"
+
+    caminho = abrir_dialogo_pasta(titulo)
+    return jsonify({"caminho": caminho})
+
+
+# ─── Processamento ────────────────────────────────────────────────────────────
+
+def processar_pastas(pasta_entrada: str, pasta_saida: str) -> dict:
+    """
+    Placeholder para o processamento principal.
+    Substitua o corpo desta função pelo seu código real.
+
+    Args:
+        pasta_entrada: Caminho absoluto da pasta de entrada.
+        pasta_saida:   Caminho absoluto da pasta de saída.
+
+    Returns:
+        dict com status e mensagem do processamento.
+    """
+    start_conversions(pasta_entrada, pasta_saida)
+    
+    return {
+        "status": "ok",
+        "mensagem": f"Processamento concluído. Entrada: {pasta_entrada} | Saída: {pasta_saida}",
+    }
+
+
+# ─── VIEW 1 · Seleção de pastas ───────────────────────────────────────────────
+
+@app.route("/", methods=["GET"])
+def index():
+    """Exibe o formulário de seleção de pastas."""
+    return render_template("index.html")
+
+
+@app.route("/processar", methods=["POST"])
+def processar():
+    """Recebe as pastas, executa o processamento e redireciona."""
+    pasta_entrada = request.form.get("pasta_entrada", "").strip()
+    pasta_saida   = request.form.get("pasta_saida",   "").strip()
+
+    if not pasta_entrada or not pasta_saida:
+        flash("Ambos os campos são obrigatórios.", "erro")
+        return redirect(url_for("index"))
+
+    if not Path(pasta_entrada).is_dir():
+        flash(f"Pasta de entrada não encontrada: {pasta_entrada}", "erro")
+        return redirect(url_for("index"))
+
+    try:
+        resultado = processar_pastas(pasta_entrada, pasta_saida)
+        flash(resultado["mensagem"], "sucesso")
+    except Exception as exc:
+        flash(f"Erro no processamento: {exc}", "erro")
+
+    return redirect(url_for("index"))
+
+
+# ─── VIEW 2 · Relatórios ──────────────────────────────────────────────────────
+
+@app.route("/relatorios")
+def relatorios():
+    """Exibe a página de relatórios."""
+    return render_template("relatorios.html")
+
+
+# ─────────────────────────────────────────────────────────────────────────────
+
+if __name__ == "__main__":
+    app.run(debug=False, port=5000)   # debug=False evita duplo processo no reloader

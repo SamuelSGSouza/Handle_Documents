@@ -130,7 +130,7 @@ def parse_sped_to_csvs(sped_path: Path, output_dir: Path) -> list[dict]:
     cols_por_registro: dict[str, list[str]] = {}   # acumula colunas para o relatório
  
     start_time = time.perf_counter()
- 
+    last_counted_time = time.perf_counter()
     with ExitStack() as stack:
         writers: dict[str, csv.writer] = {}
  
@@ -208,16 +208,21 @@ def parse_sped_to_csvs(sped_path: Path, output_dir: Path) -> list[dict]:
             ),]
  
     elapsed = round(time.perf_counter() - start_time, 4)
- 
-    # Relatório de sucesso — um entry por tipo de registro gerado
-    return [
-        success(
+    
+    relatorios = []
+    index = 0
+    for registro, colunas in cols_por_registro.items():
+        if index > 0:
+            elapsed = 0
+        relatorios.append(success(
             file_path=Path(str(output_path / f"{registro}.csv")),
             execution_time_seconds=elapsed,
             find_cols=colunas,
-        )
-        for registro, colunas in cols_por_registro.items()
-    ]
+        ))
+        index+=1
+
+    # Relatório de sucesso — um entry por tipo de registro gerado
+    return relatorios
 # Exemplo de uso:
 if __name__ == "__main__":
     result = parse_sped_to_csvs(Path("Arquivos/II/SPED 2019/59275792000150-636003724112-20190101-20190131-0-6AB91828942ECBB35F053441BFEBD0FD0E8C11BA-SPED-EFD.txt"), Path("Tratados"))

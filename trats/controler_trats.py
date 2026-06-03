@@ -5,6 +5,7 @@ from trats.trat_sped import parse_sped_to_csvs
 from trats.trat_pdf import parse_pdf_to_csv
 from utils.reporter_base import Report, failure
 from utils.gerar_exemplos import gerar_exemplos
+from utils.gerar_relatorio_html import gerar_relatorio_html
 from pathlib import Path
 import json, shutil
 import pandas as pd
@@ -24,16 +25,14 @@ def conversor(input_dir: str, output_dir: str, files_to_reload:list=[]) -> list[
         if files_to_reload:
             if file not in files_to_reload:
                 continue
-        print(f"Tratando arquivo: {filepath}")
         if file.endswith(".pdf"):
             reports = parse_pdf_to_csv(str(filepath), output_dir)
-        # if file.endswith(".csv"):
-        #     reports = parse_csv(str(filepath), output_dir)
-        
-        # elif "sped" in file.lower():
-        #     reports = parse_sped_to_csvs(str(filepath), output_dir)
-        # elif file.endswith("xlsx") or file.endswith("xlsb"):
-        #     reports = convert_xls_to_csv(str(filepath), output_dir)
+        elif file.endswith(".csv"):
+            reports = parse_csv(str(filepath), output_dir)
+        elif "sped" in file.lower():
+            reports = parse_sped_to_csvs(str(filepath), output_dir)
+        elif file.endswith("xlsx") or file.endswith("xlsb"):
+            reports = convert_xls_to_csv(str(filepath), output_dir)
         else:
             reports = [
                 failure(
@@ -47,7 +46,7 @@ def conversor(input_dir: str, output_dir: str, files_to_reload:list=[]) -> list[
     return all_reports
 
 def start_conversions(input_folder="+ Documentos Recebidos", output_folder="Resultados"):
-
+    output_folder = os.path.join(output_folder, "+ Resultados do Tratamento")
     path_relatorio_json = os.path.join(output_folder, "Relatório das Conversões.json")
     path_relatorio_csv = os.path.join(output_folder, "Relatório das Conversões.csv")
 
@@ -72,8 +71,8 @@ def start_conversions(input_folder="+ Documentos Recebidos", output_folder="Resu
 
     df["find_cols"] = df["find_cols"].apply(lambda x: x[:100])
     df.to_csv(path_relatorio_csv, sep=";")
-    
-    gerar_exemplos(Path(output_folder), Path("Exemplos"))
+    gerar_relatorio_html(df)
+    gerar_exemplos(Path(output_folder), Path(os.path.join(output_folder, "Exemplos")))
 
 if __name__ == "__main__":
     pass
