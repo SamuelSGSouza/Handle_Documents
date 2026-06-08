@@ -3,12 +3,13 @@ Flask App - Sistema de Processamento de Pastas
 Advocacia · Seleção de pastas via janela nativa (tkinter) + Relatórios
 """
 
-import threading
+import threading, os
 import tkinter as tk
 from tkinter import filedialog
 from pathlib import Path
 from flask import Flask, render_template, request, redirect, url_for, flash, jsonify
 from trats.controler_trats import start_conversions
+from flask import send_from_directory, abort
 
 
 app = Flask(__name__)
@@ -121,6 +122,48 @@ def relatorios():
 
 
 # ─────────────────────────────────────────────────────────────────────────────
+@app.route("/baixar-relatorio")
+def baixar_relatorio():
+    """
+    Serve o relatório solicitado como download.
+    Parâmetro ?arquivo=csv ou ?arquivo=json
+    """
+    tipo = request.args.get("arquivo", "").lower()
+ 
+    nomes = {
+        "csv":  "Relatório das Conversões.csv",
+        "json": "Relatório das Conversões.json",
+    }
+ 
+    if tipo not in nomes:
+        abort(400, "Tipo de arquivo inválido.")
+ 
+    nome_arquivo = nomes[tipo]
+ 
+    # ──────────────────────────────────────────────────────────────────────────
+    # AJUSTE: defina aqui a pasta onde os relatórios são salvos pelo backend.
+    # Exemplos:
+    #   pasta_relatorios = Path("relatorios")                 # relativo ao projeto
+    #   pasta_relatorios = Path(r"C:\MeuSistema\relatorios")  # caminho absoluto
+    # ──────────────────────────────────────────────────────────────────────────
+    pasta_saida   = request.form.get("pasta_saida",   "").strip()
+    pasta_relatorios = Path(os.path.join(pasta_saida, "+ Resultados do Tratamento"))   # <── altere conforme necessário
+ 
+    caminho = pasta_relatorios / nome_arquivo
+    print("Caminho: ", caminho)
+    if not caminho.exists():
+        abort(404, f"Relatório não encontrado: {nome_arquivo}")
+ 
+    return send_from_directory(
+        directory=str(pasta_relatorios.resolve()),
+        path=nome_arquivo,
+        as_attachment=True,
+    )
+ 
+
+# ─────────────────────────────────────────────────────────────────────────────
+
+
 
 if __name__ == "__main__":
     app.run(debug=False, port=5000)   # debug=False evita duplo processo no reloader

@@ -422,6 +422,135 @@
     .relatorios-link a:hover { color: var(--ouro-claro); }
     .relatorios-link a svg { width: 14px; height: 14px; }
 
+    /* ── Card de Downloads ── */
+    .card-downloads {
+      background: linear-gradient(160deg, rgba(22,45,90,.92) 0%, rgba(13,34,71,.97) 100%);
+      border: 1px solid rgba(201,168,76,.2);
+      border-radius: 4px;
+      padding: 2rem 3rem;
+      width: 100%; max-width: 580px;
+      box-shadow: 0 24px 64px rgba(0,0,0,.5), inset 0 1px 0 rgba(201,168,76,.12);
+      position: relative; z-index: 1;
+      margin-top: 1.4rem;
+      animation: fadeUp .7s ease .2s both;
+    }
+
+    .card-downloads::before, .card-downloads::after {
+      content: '';
+      position: absolute;
+      width: 22px; height: 22px;
+      border-color: var(--ouro);
+      border-style: solid;
+      opacity: .4;
+    }
+    .card-downloads::before { top: 12px; left: 12px; border-width: 1px 0 0 1px; }
+    .card-downloads::after  { bottom: 12px; right: 12px; border-width: 0 1px 1px 0; }
+
+    .card-downloads h2 {
+      font-family: 'Cormorant Garamond', serif;
+      font-size: 1.1rem;
+      font-weight: 600;
+      color: var(--ouro-claro);
+      margin-bottom: 1.2rem;
+      display: flex; align-items: center; gap: .7rem;
+    }
+
+    .card-downloads h2::after {
+      content: ''; flex: 1; height: 1px;
+      background: linear-gradient(90deg, rgba(201,168,76,.4), transparent);
+    }
+
+    .downloads-grid {
+      display: flex;
+      flex-direction: column;
+      gap: .75rem;
+    }
+
+    .btn-download {
+      display: flex;
+      align-items: center;
+      gap: 1rem;
+      padding: .85rem 1.1rem;
+      background: rgba(10,22,40,.5);
+      border: 1px solid rgba(201,168,76,.18);
+      border-radius: 3px;
+      text-decoration: none;
+      cursor: pointer;
+      transition: background .2s, border-color .2s, transform .15s, box-shadow .2s;
+      position: relative;
+      overflow: hidden;
+    }
+
+    .btn-download:hover {
+      background: rgba(201,168,76,.1);
+      border-color: rgba(201,168,76,.4);
+      transform: translateY(-1px);
+      box-shadow: 0 6px 20px rgba(0,0,0,.35);
+    }
+
+    .btn-download:active { transform: translateY(0); }
+
+    .btn-download::after {
+      content: '';
+      position: absolute; inset: 0;
+      background: linear-gradient(90deg, transparent, rgba(201,168,76,.05), transparent);
+      opacity: 0;
+      transition: opacity .3s;
+    }
+    .btn-download:hover::after { opacity: 1; }
+
+    .download-file-icon {
+      flex-shrink: 0;
+      width: 36px; height: 36px;
+      border-radius: 4px;
+      display: flex; align-items: center; justify-content: center;
+    }
+
+    .download-file-icon.csv { background: rgba(80,160,80,.15); border: 1px solid rgba(80,160,80,.25); }
+    .download-file-icon.json { background: rgba(80,120,200,.15); border: 1px solid rgba(80,120,200,.25); }
+
+    .download-file-icon svg { width: 18px; height: 18px; }
+    .download-file-icon.csv  svg { stroke: #7dc97d; }
+    .download-file-icon.json svg { stroke: #7da8e0; }
+
+    .download-info { flex: 1; min-width: 0; }
+
+    .download-nome {
+      font-size: .8rem;
+      font-weight: 600;
+      color: var(--branco);
+      letter-spacing: .02em;
+      white-space: nowrap;
+      overflow: hidden;
+      text-overflow: ellipsis;
+    }
+
+    .download-tipo {
+      font-size: .67rem;
+      letter-spacing: .1em;
+      text-transform: uppercase;
+      color: rgba(201,168,76,.5);
+      font-weight: 500;
+      margin-top: .2rem;
+    }
+
+    .download-arrow {
+      flex-shrink: 0;
+      width: 28px; height: 28px;
+      background: rgba(201,168,76,.08);
+      border: 1px solid rgba(201,168,76,.15);
+      border-radius: 50%;
+      display: flex; align-items: center; justify-content: center;
+      transition: background .2s, border-color .2s;
+    }
+
+    .btn-download:hover .download-arrow {
+      background: rgba(201,168,76,.18);
+      border-color: rgba(201,168,76,.4);
+    }
+
+    .download-arrow svg { width: 13px; height: 13px; stroke: var(--ouro); }
+
     footer {
       margin-top: 2.5rem;
       font-size: .65rem;
@@ -558,6 +687,62 @@
       </button>
 
     </form>
+  </div>
+
+  <!-- ── Card de Downloads ── -->
+  <div class="card-downloads">
+    <h2>
+      <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" style="width:17px;height:17px;stroke:var(--ouro);">
+        <path d="M21 15v4a2 2 0 01-2 2H5a2 2 0 01-2-2v-4M7 10l5 5 5-5M12 15V3"/>
+      </svg>
+      Baixar Relatórios
+    </h2>
+
+    <div class="downloads-grid">
+
+      <!-- CSV -->
+      <a class="btn-download" href="/baixar-relatorio?arquivo=csv" download>
+        <div class="download-file-icon csv">
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8">
+            <path d="M14 2H6a2 2 0 00-2 2v16a2 2 0 002 2h12a2 2 0 002-2V8z"/>
+            <polyline points="14 2 14 8 20 8"/>
+            <line x1="8" y1="13" x2="16" y2="13"/>
+            <line x1="8" y1="17" x2="16" y2="17"/>
+          </svg>
+        </div>
+        <div class="download-info">
+          <div class="download-nome">Relatório das Conversões.csv</div>
+          <div class="download-tipo">Planilha · CSV</div>
+        </div>
+        <div class="download-arrow">
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2">
+            <path d="M12 5v14M5 12l7 7 7-7"/>
+          </svg>
+        </div>
+      </a>
+
+      <!-- JSON -->
+      <a class="btn-download" href="/baixar-relatorio?arquivo=json" download>
+        <div class="download-file-icon json">
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8">
+            <path d="M14 2H6a2 2 0 00-2 2v16a2 2 0 002 2h12a2 2 0 002-2V8z"/>
+            <polyline points="14 2 14 8 20 8"/>
+            <line x1="8" y1="13" x2="16" y2="13"/>
+            <line x1="8" y1="17" x2="16" y2="17"/>
+          </svg>
+        </div>
+        <div class="download-info">
+          <div class="download-nome">Relatório das Conversões.json</div>
+          <div class="download-tipo">Estruturado · JSON</div>
+        </div>
+        <div class="download-arrow">
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2">
+            <path d="M12 5v14M5 12l7 7 7-7"/>
+          </svg>
+        </div>
+      </a>
+
+    </div>
   </div>
 
   <div class="relatorios-link">

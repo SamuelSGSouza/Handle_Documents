@@ -106,10 +106,10 @@ def parse_sped_to_csvs(sped_path: Path, output_dir: Path) -> list[dict]:
     mes = data.split("_")[1]
     output_path = (
         output_dir
-        / ano
-        / mes
         / "SPED"
         / _retorna_tipo_sped(sped_path)
+        / ano
+        / mes        
     )
     
  

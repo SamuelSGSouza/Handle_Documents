@@ -62,6 +62,108 @@ MAX_UNNAMED_RATIO = 0.2  # tolerância de colunas "Unnamed:*" no pandas
 MIN_DATA_ROWS    = 2     # mínimo de linhas de dados para bloco ser considerado tabela
 HEADER_ROW_TRESHOLD = 0.8
 
+
+
+
+# ── Helpers ────────────────────────────────────────────────────────
+
+from typing import Literal, Optional
+CATEGORIAS = Literal["SPED_EFD", "SPED_ECD", "NOTAS_FISCAIS", "OUTROS"]
+CATEGORIAS_VALIDAS = {"SPED_EFD", "SPED_ECD", "NOTAS_FISCAIS", "OUTROS"}
+ 
+ 
+def retorna_categoria(path: str,aba: Optional[str] = None,) -> CATEGORIAS:
+    client = anthropic.Anthropic(api_key=API_KEY)
+    """
+    Classifica um arquivo em uma das categorias fiscais com base no nome
+    do arquivo e, opcionalmente, no nome da aba.
+ 
+    Args:
+        path:   Caminho ou nome do arquivo a classificar.
+        aba:    Nome da aba/sheet (opcional). Quando fornecido, enriquece
+                o contexto para a classificação.
+        client: Instância de anthropic.Anthropic já configurada.
+        model:  ID do modelo a usar.
+ 
+    Returns:
+        Uma das strings: "SPED_EFD", "SPED_ECD", "NOTAS_FISCAIS", "OUTROS".
+    """
+    contexto_aba = f"\n<aba>{aba}</aba>" if aba else ""
+ 
+    prompt = f"""\
+Você é um classificador de arquivos fiscais brasileiros. Analise o nome do arquivo \
+e, quando disponível, o nome da aba, e retorne EXATAMENTE uma das categorias abaixo \
+— sem pontuação, sem espaços extras, sem explicações.
+ 
+Categorias válidas:
+- SPED_EFD      → Escrituração Fiscal Digital (EFD ICMS/IPI ou EFD Contribuições)
+- SPED_ECD      → Escrituração Contábil Digital
+- NOTAS_FISCAIS → Notas fiscais de entrada ou saída (NF-e, NFS-e, XML, DANFE)
+- OUTROS        → Qualquer arquivo que não se enquadre nas categorias acima
+ 
+Exemplos:
+<arquivo>EFD_ICMS_IPI_2023_01.txt</arquivo> → SPED_EFD
+<arquivo>sped_efd_contribuicoes_jan22.txt</arquivo> → SPED_EFD
+<arquivo>ECD_2022.txt</arquivo> → SPED_ECD
+<arquivo>escrituracao_contabil_2021.sped</arquivo> → SPED_ECD
+<arquivo>NF_entrada_042023.xml</arquivo> → NOTAS_FISCAIS
+<arquivo>notas_fiscais_saida_março.xlsx</arquivo><aba>NF-e Saída</aba> → NOTAS_FISCAIS
+<arquivo>relatorio_vendas.xlsx</arquivo> → OUTROS
+<arquivo>balancete_2022.pdf</arquivo> → OUTROS
+ 
+Agora classifique:
+<arquivo>{path}</arquivo>{contexto_aba}"""
+ 
+    message = client.messages.create(
+        model="claude-haiku-4-5-20251001",
+        max_tokens=20,
+        messages=[{"role": "user", "content": prompt}],
+    )
+ 
+    resposta = message.content[0].text.strip().upper()
+ 
+    # Retorno exato — caminho feliz
+    if resposta in CATEGORIAS_VALIDAS:
+        return resposta  # type: ignore[return-value]
+ 
+    # Fallback: extrai substring válida caso o modelo adicione lixo ao redor
+    for categoria in CATEGORIAS_VALIDAS:
+        if categoria in resposta:
+            return categoria  # type: ignore[return-value]
+ 
+    # Fallback total: alucinação completa → default seguro
+    return "OUTROS"
+
+def _retorna_data(path, ):
+    client = anthropic.Anthropic(api_key=API_KEY)
+
+    prompt = f""""
+    A partir do nome do arquivo "{path}"
+    retorne o mẽs e ano de referẽncia no formato YYYY_MM
+    Não retorne comentários ou explicações, apenas o YYYY_MM
+    Lembre-se que um ano só possui 12 meses e que o ano mais antigo será 1990.
+    Se não puder afirmar com precisão alguma das informações, prefira retornar 00
+    Se não encontrar o ano ou o mês, retorne substituindo o que faltar por 00. Exemplo com mês não encontrado: 2021_00
+    
+    Formatos de retorno válidos:
+    1. 2022_01
+    2. 2003_12
+    3. 2019_00
+    4. 0000_06
+    
+    Formatos de retorno Inválidos:
+    1. 1003_12
+    2. 2023_99
+    """
+
+    message = client.messages.create(
+        model="claude-haiku-4-5-20251001",
+        max_tokens=7,
+        messages=[{"role": "user", "content": prompt}],
+    )
+    return message.content[0].text.strip()
+
+
 # ── Tipos de resultado ────────────────────────────────────────────────────────
 
 class Layer(str, Enum):
@@ -648,33 +750,20 @@ def _process_sheet(
 
 # ── Entrada pública ───────────────────────────────────────────────────────────
 
-def convert_xls_to_csv(
-    xls_path: str | Path,
-    output_dir: str | Path = ".",
-) -> list[Report]:
-    """
-    Converte um arquivo .xlsb ou .xlsx para CSVs.
+def convert_xls_to_csv( xls_path: str | Path, input_dir: str | Path, output_dir: str | Path = ".",) -> list[Report]:
+    xls_path   = Path(xls_path)
+    input_dir  = Path(input_dir)
+    output_dir = Path(output_dir)
 
-    Args:
-        xls_path:   Caminho para o arquivo de entrada.
-        output_dir: Diretório raiz de saída (criado se não existir).
-        api_key:    Chave Anthropic. Se None, lê de ANTHROPIC_API_KEY.
-                    Se ausente, Claude não é acionado — erros são explícitos.
-
-    Returns:
-        Lista de TableResult (sucesso) e SheetError (falha).
-        Nunca retorna silenciosamente — SheetError em vez de None.
-
-    Raises:
-        FileNotFoundError: Arquivo não encontrado.
-        ValueError:        Formato de arquivo não suportado.
-    """
-    xls_path = Path(xls_path)
     if not xls_path.exists():
         raise FileNotFoundError(f"Arquivo não encontrado: {xls_path}")
 
-    output_dir = Path(output_dir)
-    output_dir.mkdir(parents=True, exist_ok=True)
+    if not API_KEY:
+        return [failure(
+            reason="API_KEY não configurada em utils/constants.py",
+            solution="Verifique se o arquivo de constants foi criado e possui uma chave de API",
+            file_path=xls_path,
+        )]
 
     resolved_key = API_KEY
     client = anthropic.Anthropic(api_key=resolved_key) if resolved_key else None
@@ -683,19 +772,45 @@ def convert_xls_to_csv(
             failure(reason="Client do Claude Não foi definido", solution="Insira um client válido para o Claude", file_path=xls_path),
         ]
     # Data de referência: uma única chamada para o arquivo inteiro
-    
 
     sheets = _sheet_names(xls_path)
     if not sheets:
-        return   [
-            failure(reason="Nenhuma aba encontrada", solution="Verifique se o arquivo está corrompido", file_path=xls_path),
-        ]
-
+        return [failure(
+            reason="Nenhuma aba encontrada",
+            solution="Verifique se o arquivo está corrompido",
+            file_path=xls_path,
+        )]
 
     all_results: list[Report] = []
+
     for sheet_name in sheets:
-        ano, mes = _extract_ref_date(str(xls_path), f"\n sheetname: {str(sheet_name)}", client)
-        results = _process_sheet(xls_path, sheet_name, output_dir, ano, mes, client)
+
+        # --- Categoria por aba ---
+        categoria = retorna_categoria(str(xls_path), aba=str(sheet_name), )
+
+        if categoria == "OUTROS":
+            relative   = xls_path.relative_to(input_dir)
+            dest_folder = output_dir / relative.parent
+        else:
+            data_referencia = _retorna_data(str(xls_path), str(sheet_name))
+            partes = data_referencia.split("_")
+            if len(partes) != 2:
+                all_results.append(failure(
+                    reason=f"data_referencia inválida para aba '{sheet_name}': {data_referencia!r}",
+                    solution="Verifique o nome do arquivo ou da aba",
+                    file_path=xls_path,
+                ))
+                continue
+            ano, mes = partes
+            dest_folder = output_dir / categoria / ano / mes
+
+        dest_folder.mkdir(parents=True, exist_ok=True)
+
+        # Nome do arquivo de saída inclui o nome da aba nos dois cenários
+        sheet_slug = str(sheet_name).strip().replace(" ", "_")
+        dest_file  = dest_folder / f"{xls_path.stem}__{sheet_slug}.csv"
+
+        results = _process_sheet(xls_path, sheet_name, dest_folder, dest_file, client)
         all_results.extend(results)
 
     return all_results

@@ -9,7 +9,7 @@ from utils.gerar_relatorio_html import gerar_relatorio_html
 from pathlib import Path
 import json, shutil
 import pandas as pd
-
+import traceback
 
 
 def conversor(input_dir: str, output_dir: str, files_to_reload:list=[]) -> list[Report]:
@@ -18,30 +18,37 @@ def conversor(input_dir: str, output_dir: str, files_to_reload:list=[]) -> list[
 
     files_to_reload = "\n".join(files_to_reload)
     for filepath in input_path.rglob("*"):
-        if not filepath.is_file():
-            continue
-        
-        file = filepath.name
-        if files_to_reload:
-            if file not in files_to_reload:
+
+        try:
+            if not filepath.is_file():
                 continue
-        if file.endswith(".pdf"):
-            reports = parse_pdf_to_csv(str(filepath), output_dir)
-        elif file.endswith(".csv"):
-            reports = parse_csv(str(filepath), output_dir)
-        elif "sped" in file.lower():
-            reports = parse_sped_to_csvs(str(filepath), output_dir)
-        elif file.endswith("xlsx") or file.endswith("xlsb"):
-            reports = convert_xls_to_csv(str(filepath), output_dir)
-        else:
-            reports = [
-                failure(
-                    reason="Arquivo possui um formato ou nomenclatura não suportada",
-                    solution="Verifique o formato e nomenclatura e crie uma função de tratamento caso necessário.",
-                    file_path=filepath
-                ),
-            ]
-        all_reports += reports
+            
+            file = filepath.name
+            if files_to_reload:
+                if file not in files_to_reload:
+                    continue
+            if file.endswith(".pdf"):
+                reports = parse_pdf_to_csv(str(filepath),input_dir, output_dir)
+            elif file.endswith(".csv"):
+                reports = parse_csv(str(filepath),input_dir, output_dir)
+            elif "sped" in file.lower():
+                reports = parse_sped_to_csvs(str(filepath), output_dir)
+            elif file.endswith("xlsx") or file.endswith("xlsb"):
+                reports = convert_xls_to_csv(str(filepath),input_dir, output_dir)
+            else:
+                reports = [
+                    failure(
+                        reason="Arquivo possui um formato ou nomenclatura não suportada",
+                        solution="Verifique o formato e nomenclatura e crie uma função de tratamento caso necessário.",
+                        file_path=filepath
+                    ),
+                ]
+            all_reports += reports
+
+        except Exception as e:
+            all_reports.append(
+                failure(f"Erro desconhecido: {traceback.format_exc()}", "", filepath)
+            )
 
     return all_reports
 
