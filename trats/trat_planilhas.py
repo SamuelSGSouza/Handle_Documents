@@ -70,37 +70,37 @@ HEADER_ROW_TRESHOLD = 0.8
 from typing import Literal, Optional
 CATEGORIAS = Literal["SPED_EFD", "SPED_ECD", "NOTAS_FISCAIS", "OUTROS"]
 CATEGORIAS_VALIDAS = {"SPED_EFD", "SPED_ECD", "NOTAS_FISCAIS", "OUTROS"}
- 
- 
+
+
 def retorna_categoria(path: str,aba: Optional[str] = None,) -> CATEGORIAS:
     client = anthropic.Anthropic(api_key=API_KEY)
     """
     Classifica um arquivo em uma das categorias fiscais com base no nome
     do arquivo e, opcionalmente, no nome da aba.
- 
+
     Args:
         path:   Caminho ou nome do arquivo a classificar.
         aba:    Nome da aba/sheet (opcional). Quando fornecido, enriquece
                 o contexto para a classificação.
         client: Instância de anthropic.Anthropic já configurada.
         model:  ID do modelo a usar.
- 
+
     Returns:
         Uma das strings: "SPED_EFD", "SPED_ECD", "NOTAS_FISCAIS", "OUTROS".
     """
     contexto_aba = f"\n<aba>{aba}</aba>" if aba else ""
- 
+
     prompt = f"""\
 Você é um classificador de arquivos fiscais brasileiros. Analise o nome do arquivo \
 e, quando disponível, o nome da aba, e retorne EXATAMENTE uma das categorias abaixo \
 — sem pontuação, sem espaços extras, sem explicações.
- 
+
 Categorias válidas:
 - SPED_EFD      → Escrituração Fiscal Digital (EFD ICMS/IPI ou EFD Contribuições)
 - SPED_ECD      → Escrituração Contábil Digital
 - NOTAS_FISCAIS → Notas fiscais de entrada ou saída (NF-e, NFS-e, XML, DANFE)
 - OUTROS        → Qualquer arquivo que não se enquadre nas categorias acima
- 
+
 Exemplos:
 <arquivo>EFD_ICMS_IPI_2023_01.txt</arquivo> → SPED_EFD
 <arquivo>sped_efd_contribuicoes_jan22.txt</arquivo> → SPED_EFD
@@ -110,47 +110,49 @@ Exemplos:
 <arquivo>notas_fiscais_saida_março.xlsx</arquivo><aba>NF-e Saída</aba> → NOTAS_FISCAIS
 <arquivo>relatorio_vendas.xlsx</arquivo> → OUTROS
 <arquivo>balancete_2022.pdf</arquivo> → OUTROS
- 
+
 Agora classifique:
 <arquivo>{path}</arquivo>{contexto_aba}"""
- 
+
     message = client.messages.create(
         model="claude-haiku-4-5-20251001",
         max_tokens=20,
         messages=[{"role": "user", "content": prompt}],
     )
- 
+
     resposta = message.content[0].text.strip().upper()
- 
+
     # Retorno exato — caminho feliz
     if resposta in CATEGORIAS_VALIDAS:
         return resposta  # type: ignore[return-value]
- 
+
     # Fallback: extrai substring válida caso o modelo adicione lixo ao redor
     for categoria in CATEGORIAS_VALIDAS:
         if categoria in resposta:
             return categoria  # type: ignore[return-value]
- 
+
     # Fallback total: alucinação completa → default seguro
     return "OUTROS"
 
-def _retorna_data(path, ):
+def _retorna_data(path, aba):
     client = anthropic.Anthropic(api_key=API_KEY)
-
+    texto_aba = ""
+    if aba:
+        texto_aba = f'e o nome da aba "{aba}"'
     prompt = f""""
-    A partir do nome do arquivo "{path}"
+    A partir do nome do arquivo "{path}"{texto_aba},
     retorne o mẽs e ano de referẽncia no formato YYYY_MM
     Não retorne comentários ou explicações, apenas o YYYY_MM
     Lembre-se que um ano só possui 12 meses e que o ano mais antigo será 1990.
     Se não puder afirmar com precisão alguma das informações, prefira retornar 00
     Se não encontrar o ano ou o mês, retorne substituindo o que faltar por 00. Exemplo com mês não encontrado: 2021_00
-    
+
     Formatos de retorno válidos:
     1. 2022_01
     2. 2003_12
     3. 2019_00
     4. 0000_06
-    
+
     Formatos de retorno Inválidos:
     1. 1003_12
     2. 2023_99
@@ -298,7 +300,7 @@ def _block_to_dataframe(
         if r > best_ratio:
             best_ratio = r
             best_idx = i
-    
+
     if best_ratio < MIN_FILL_RATIO:
         return None
 
@@ -597,7 +599,7 @@ def _extract_ref_date(path: str, sheet_name:str, client: anthropic.Anthropic | N
 
     Retorna (ano, mes) como strings, ex: ("2022", "01") ou ("0000", "00").
     """
-    
+
 
     prompt = (
         f'A partir do nome de arquivo "{path}" e do sheet_name {sheet_name}, retorne mês e ano de referência '
@@ -626,22 +628,15 @@ def _sanitize(name: str) -> str:
 
 
 def _write_csv(
-    output_dir: Path,
-    ano: str,
-    mes: str,
-    sheet_slug: str,
-    table_name: str,
+    dest_file: Path,
     columns: list[str],
     data: list[list[Any]],
 ) -> Path:
-    dest = output_dir / ano / mes
-    dest.mkdir(parents=True, exist_ok=True)
-    out_path = dest / f"{sheet_slug}__{table_name}.csv"
-    with open(out_path, "w", newline="", encoding="utf-8") as f:
+    with open(dest_file, "w", newline="", encoding="utf-8") as f:
         writer = csv.writer(f, delimiter=";")
         writer.writerow(columns)
         writer.writerows(data)
-    return out_path
+    return dest_file
 
 
 # ── Orquestrador principal ────────────────────────────────────────────────────
@@ -649,9 +644,7 @@ def _write_csv(
 def _process_sheet(
     wb_path: Path,
     sheet_name: str,
-    output_dir: Path,
-    ano: str,
-    mes: str,
+    dest_file: Path,
     client: anthropic.Anthropic | None,
 ) -> list[TableResult | SheetError]:
     """Pipeline de 3 camadas para uma única aba."""
@@ -662,8 +655,8 @@ def _process_sheet(
     try:
         raw_rows = _read_raw(wb_path, sheet_name)
     except Exception as e:
-        return [failure(reason=f"Erro ao ler aba: {e}", solution="Verifique se a aba realmente existe e se não está corrompida", file_path=wb_path),]
-    
+        return [failure(reason=f"Erro ao ler aba: {e}", solution="Verifique se a aba realmente existe e se não está corrompida", file_path=dest_file, original_path=wb_path),]
+
 
     # ── Camada 1: pandas ──────────────────────────────────────────────────────
     t0 = time.perf_counter()
@@ -671,7 +664,7 @@ def _process_sheet(
         pandas_result = _try_pandas(wb_path, sheet_name, raw_rows=raw_rows)
     except Exception as e:
         pandas_result = None
-        
+
 
     if pandas_result is not None:
         tables_df, warnings = pandas_result
@@ -679,13 +672,14 @@ def _process_sheet(
             t_name = f"tabela_{i + 1}" if len(tables_df) > 1 else "tabela"
             columns = list(df.columns)
             data = df.values.tolist()
-            out = _write_csv(output_dir, ano, mes, sheet_slug, t_name, columns, data)
+            out = _write_csv(dest_file, columns, data)
             results.append(
                 success(
                     file_path=out,
                     find_cols=columns,
                     execution_time_seconds=round(time.perf_counter() - t0, 4),
-                    warning=warnings
+                    warning=warnings,
+                    original_path=wb_path
                 )
             )
         return results
@@ -702,7 +696,7 @@ def _process_sheet(
         for i, t in enumerate(tables_h):
             t_name = f"tabela_{i + 1}" if len(tables_h) > 1 else "tabela"
             out = _write_csv(
-                output_dir, ano, mes, sheet_slug, t_name,
+                dest_file,
                 t["header"], t["rows"],
             )
             results.append(
@@ -710,14 +704,15 @@ def _process_sheet(
                     file_path=out,
                     find_cols=columns,
                     execution_time_seconds=round(time.perf_counter() - t0, 4),
-                    warning="Foi utilizado o método heurístico, que pode apresentar formatos estranhos\n" + warnings
+                    warning="Foi utilizado o método heurístico, que pode apresentar formatos estranhos\n" + warnings,
+                    original_path=wb_path
                 )
             )
         return results
 
     # ── Camada 3: Claude ──────────────────────────────────────────────────────
     if client is None:
-        return [failure(reason=f"Pandas e heurística falharam na sheet {sheet_name}; Claude não está disponível (api_key ausente)", solution="Verifique a chave de api", file_path=wb_path),]
+        return [failure(reason=f"Pandas e heurística falharam na sheet {sheet_name}; Claude não está disponível (api_key ausente)", solution="Verifique a chave de api", file_path=dest_file, original_path=wb_path),]
 
 
     t0 = time.perf_counter()
@@ -726,13 +721,13 @@ def _process_sheet(
             raw_rows = _read_raw(wb_path, sheet_name)
         tables_c = _try_claude(client, sheet_name, raw_rows)
     except Exception as e:
-        return [failure(reason=f"Claude falhou na sheet {sheet_name}: {e}", solution="", file_path=wb_path),]
+        return [failure(reason=f"Claude falhou na sheet {sheet_name}: {e}", solution="", file_path=dest_file, original_path=wb_path),]
 
 
     for i, t in enumerate(tables_c):
         t_name = f"tabela_{i + 1}" if len(tables_c) > 1 else "tabela"
         out = _write_csv(
-            output_dir, ano, mes, sheet_slug, t_name,
+            dest_file,
             t["header"], t["rows"],
         )
 
@@ -741,7 +736,8 @@ def _process_sheet(
                 file_path=out,
                 find_cols=columns,
                 execution_time_seconds=round(time.perf_counter() - t0, 4),
-                warning="Foi utilizado o método heurístico, que pode apresentar formatos estranhos\n" + warnings
+                warning="Foi utilizado o método heurístico, que pode apresentar formatos estranhos\n" + warnings,
+                original_path=wb_path
             )
         )
 
@@ -763,13 +759,14 @@ def convert_xls_to_csv( xls_path: str | Path, input_dir: str | Path, output_dir:
             reason="API_KEY não configurada em utils/constants.py",
             solution="Verifique se o arquivo de constants foi criado e possui uma chave de API",
             file_path=xls_path,
+            original_path=xls_path
         )]
 
     resolved_key = API_KEY
     client = anthropic.Anthropic(api_key=resolved_key) if resolved_key else None
     if not client:
         return   [
-            failure(reason="Client do Claude Não foi definido", solution="Insira um client válido para o Claude", file_path=xls_path),
+            failure(reason="Client do Claude Não foi definido", solution="Insira um client válido para o Claude", file_path=xls_path, original_path=xls_path),
         ]
     # Data de referência: uma única chamada para o arquivo inteiro
 
@@ -779,6 +776,7 @@ def convert_xls_to_csv( xls_path: str | Path, input_dir: str | Path, output_dir:
             reason="Nenhuma aba encontrada",
             solution="Verifique se o arquivo está corrompido",
             file_path=xls_path,
+            original_path=xls_path
         )]
 
     all_results: list[Report] = []
@@ -799,6 +797,7 @@ def convert_xls_to_csv( xls_path: str | Path, input_dir: str | Path, output_dir:
                     reason=f"data_referencia inválida para aba '{sheet_name}': {data_referencia!r}",
                     solution="Verifique o nome do arquivo ou da aba",
                     file_path=xls_path,
+                    original_path=xls_path
                 ))
                 continue
             ano, mes = partes
@@ -810,7 +809,7 @@ def convert_xls_to_csv( xls_path: str | Path, input_dir: str | Path, output_dir:
         sheet_slug = str(sheet_name).strip().replace(" ", "_")
         dest_file  = dest_folder / f"{xls_path.stem}__{sheet_slug}.csv"
 
-        results = _process_sheet(xls_path, sheet_name, dest_folder, dest_file, client)
+        results = _process_sheet(xls_path, sheet_name, dest_file,client= client)
         all_results.extend(results)
 
     return all_results
@@ -822,7 +821,7 @@ def _main() -> None:
     reports = convert_xls_to_csv("Arquivos/V/9. 13868.7445612023-61/GM ZFM ALC - ANEXO II_2021_1Tri-Percentual de transferencia.xlsb", "",)
     with open("Relatório das Conversões PLAN.json", "w", encoding="utf-8") as arq:
         json.dump(reports, arq, indent=4, ensure_ascii=False)
-    
+
 
 
 if __name__ == "__main__":

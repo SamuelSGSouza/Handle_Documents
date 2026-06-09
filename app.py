@@ -3,14 +3,16 @@ Flask App - Sistema de Processamento de Pastas
 Advocacia · Seleção de pastas via janela nativa (tkinter) + Relatórios
 """
 
-import threading, os
+import threading, os, traceback
 import tkinter as tk
 from tkinter import filedialog
 from pathlib import Path
-from flask import Flask, render_template, request, redirect, url_for, flash, jsonify
+import pandas as pd
+from flask import Flask, render_template, request, redirect, url_for, flash, jsonify, Response
 from trats.controler_trats import start_conversions
 from flask import send_from_directory, abort
-
+from flask import session
+from utils.gerar_relatorio_conexoes import gerar_relatorio_conexoes
 
 app = Flask(__name__)
 app.secret_key = "advocacia-chave-secreta-2024"
@@ -95,6 +97,7 @@ def processar():
     """Recebe as pastas, executa o processamento e redireciona."""
     pasta_entrada = request.form.get("pasta_entrada", "").strip()
     pasta_saida   = request.form.get("pasta_saida",   "").strip()
+    session["pasta_saida"] = pasta_saida
 
     if not pasta_entrada or not pasta_saida:
         flash("Ambos os campos são obrigatórios.", "erro")
@@ -108,7 +111,7 @@ def processar():
         resultado = processar_pastas(pasta_entrada, pasta_saida)
         flash(resultado["mensagem"], "sucesso")
     except Exception as exc:
-        flash(f"Erro no processamento: {exc}", "erro")
+        flash(f"Erro no processamento: {traceback.format_exc()}", "erro")
 
     return redirect(url_for("index"))
 
@@ -146,7 +149,7 @@ def baixar_relatorio():
     #   pasta_relatorios = Path("relatorios")                 # relativo ao projeto
     #   pasta_relatorios = Path(r"C:\MeuSistema\relatorios")  # caminho absoluto
     # ──────────────────────────────────────────────────────────────────────────
-    pasta_saida   = request.form.get("pasta_saida",   "").strip()
+    pasta_saida = session.get("pasta_saida", "")
     pasta_relatorios = Path(os.path.join(pasta_saida, "+ Resultados do Tratamento"))   # <── altere conforme necessário
  
     caminho = pasta_relatorios / nome_arquivo
@@ -160,6 +163,58 @@ def baixar_relatorio():
         as_attachment=True,
     )
  
+
+# ─────────────────────────────────────────────────────────────────────────────
+
+
+
+# ─── VIEW 3 · Mapa de Linhagem (conexões original → gerados) ──────────────────
+
+def _pagina_aviso(titulo: str, detalhe: str) -> Response:
+    """Página simples (mesmo tema) para avisos quando não há dados."""
+    corpo = f"""<!DOCTYPE html><html lang="pt-BR"><head><meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>{titulo}</title><style>
+body{{margin:0;min-height:100vh;display:flex;align-items:center;justify-content:center;
+background:#070e1a;color:#e8eef8;font-family:system-ui,'Segoe UI',sans-serif;padding:24px;}}
+.box{{max-width:480px;text-align:center;background:#0c1628;border:1px solid #1a2d4d;
+border-radius:12px;padding:40px 36px;}}
+h1{{font-size:20px;color:#c9a84c;margin:0 0 12px;}}
+p{{color:#7a9cc4;font-size:14px;line-height:1.6;margin:0 0 24px;word-break:break-word;}}
+a{{display:inline-block;color:#070e1a;background:#c9a84c;text-decoration:none;
+font-weight:600;font-size:13px;padding:10px 22px;border-radius:99px;}}
+</style></head><body><div class="box">
+<h1>{titulo}</h1><p>{detalhe}</p>
+<a href="{url_for('index')}">← Voltar ao sistema</a>
+</div></body></html>"""
+    return Response(corpo, mimetype="text/html")
+
+
+@app.route("/relatorio-conexoes")
+def relatorio_conexoes():
+    """Gera e exibe o mapa de linhagem ligando cada arquivo original aos gerados."""
+    pasta_saida = session.get("pasta_saida", "")
+    if not pasta_saida:
+        return _pagina_aviso(
+            "Nenhum processamento encontrado",
+            "Selecione e processe uma pasta primeiro para gerar a linhagem dos arquivos.",
+        )
+
+    csv_path = Path(pasta_saida) / "+ Resultados do Tratamento" / "Relatório das Conversões.csv"
+    if not csv_path.exists():
+        return _pagina_aviso(
+            "Relatório não encontrado",
+            f"O arquivo esperado não existe: {csv_path}",
+        )
+
+    try:
+        df = pd.read_csv(csv_path, sep=";", dtype=str)
+        html_doc = gerar_relatorio_conexoes(df, output_path=None, back_url=url_for("index"))
+    except Exception as exc:
+        return _pagina_aviso("Erro ao gerar a linhagem", str(exc))
+
+    return Response(html_doc, mimetype="text/html")
+
 
 # ─────────────────────────────────────────────────────────────────────────────
 

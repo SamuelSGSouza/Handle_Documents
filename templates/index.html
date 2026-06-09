@@ -403,9 +403,18 @@
     /* ── Link relatórios ── */
     .relatorios-link {
       margin-top: 1.6rem;
-      text-align: center;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      gap: 1.4rem;
+      flex-wrap: wrap;
       position: relative; z-index: 1;
       animation: fadeUp .7s ease .25s both;
+    }
+
+    .nav-sep {
+      width: 1px; height: 14px;
+      background: rgba(201,168,76,.25);
     }
 
     .relatorios-link a {
@@ -746,11 +755,14 @@
   </div>
 
   <div class="relatorios-link">
-    <a href="/relatorios">
+    
+    <span class="nav-sep"></span>
+    <a href="/relatorio-conexoes">
       <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8">
-        <path d="M9 17H7A5 5 0 017 7h2M15 7h2a5 5 0 010 10h-2M8 12h8"/>
+        <circle cx="6" cy="6" r="2.4"/><circle cx="18" cy="6" r="2.4"/><circle cx="6" cy="18" r="2.4"/>
+        <path d="M6 8.4v7.2M8.4 6H15M18 8.4c0 4-6 3-6 7.6"/>
       </svg>
-      Acessar Relatórios
+      Mapa de Linhagem
     </a>
   </div>
 

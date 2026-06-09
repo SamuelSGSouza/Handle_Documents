@@ -120,6 +120,7 @@ def parse_sped_to_csvs(sped_path: Path, output_dir: Path) -> list[dict]:
             file_path=sped_path,
             reason=err_msg or "Arquivo SPED inválido.",
             solution="Verifique se o arquivo existe e está no formato SPED correto.",
+            original_path=sped_path
         ), ]
  
     encoding = _detect_encoding(sped_path)
@@ -205,6 +206,7 @@ def parse_sped_to_csvs(sped_path: Path, output_dir: Path) -> list[dict]:
                     "Verifique se o arquivo SPED não está corrompido "
                     "e se todas as dependências estão instaladas."
                 ),
+                original_path=sped_path
             ),]
  
     elapsed = round(time.perf_counter() - start_time, 4)
@@ -218,6 +220,7 @@ def parse_sped_to_csvs(sped_path: Path, output_dir: Path) -> list[dict]:
             file_path=Path(str(output_path / f"{registro}.csv")),
             execution_time_seconds=elapsed,
             find_cols=colunas,
+            original_path=sped_path
         ))
         index+=1
 

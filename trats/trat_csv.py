@@ -136,6 +136,7 @@ def parse_csv(file_path, input_dir, output_dir):
             file_path=str(dest_file),
             find_cols=colunas,
             execution_time_seconds=elapsed,
+            original_path=file_path
         ),]
 
     except Exception as e:
@@ -143,6 +144,7 @@ def parse_csv(file_path, input_dir, output_dir):
             reason=f"Falha desconhecida: {traceback.format_exc()}",
             solution="Verifique se o arquivo realmente existe e se é um csv válido.",
             file_path=Path(file_path),
+            original_path=Path(file_path)
         ),]
     
 

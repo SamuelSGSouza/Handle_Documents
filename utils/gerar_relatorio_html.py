@@ -3,9 +3,11 @@ from io import StringIO
 from datetime import datetime
 import html
 import json
-
+import os
 
 def gerar_relatorio_html(df: pd.DataFrame, output_path: str = "templates/relatorios.html") -> str:
+    output_path = os.path.join(os.getcwd(), output_path)
+
     """
     Recebe um DataFrame com colunas de resultado de processamento de arquivos
     e gera um relatório HTML elegante e agrupado para usuário leigo.

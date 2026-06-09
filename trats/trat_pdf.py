@@ -157,6 +157,7 @@ def parse_pdf_to_csv(input_path: str, input_dir: str, output_folder: str) -> lis
             reason=f"Arquivo não encontrado: {input_path}",
             solution="Verifique se o arquivo realmente existe",
             file_path=input_path,
+            original_path=input_path
         )]
 
     if not API_KEY:
@@ -164,6 +165,7 @@ def parse_pdf_to_csv(input_path: str, input_dir: str, output_folder: str) -> lis
             reason="API_KEY não configurada em utils/constants.py",
             solution="Verifique se o arquivo de constants foi criado e se possui uma chave de API",
             file_path=input_path,
+            original_path=input_path
         )]
 
     # --- Categoria e pasta de destino ---
@@ -209,6 +211,7 @@ def parse_pdf_to_csv(input_path: str, input_dir: str, output_folder: str) -> lis
             file_path=csv_path,
             find_cols=df.columns.tolist(),
             execution_time_seconds=round(time.perf_counter() - start_time, 4),
+            original_path=input_path
         )]
 
     # --- Fallback: extração Markdown ---
@@ -221,6 +224,7 @@ def parse_pdf_to_csv(input_path: str, input_dir: str, output_folder: str) -> lis
         find_cols=[],
         execution_time_seconds=round(time.perf_counter() - start_time, 4),
         warning="Esse arquivo é um .MD de um pdf convertido",
+        original_path=input_path
     )]
     
 # ---------------------------------------------------------------------------
