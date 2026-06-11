@@ -193,7 +193,7 @@ font-weight:600;font-size:13px;padding:10px 22px;border-radius:99px;}}
 @app.route("/relatorio-conexoes")
 def relatorio_conexoes():
     """Gera e exibe o mapa de linhagem ligando cada arquivo original aos gerados."""
-    pasta_saida = session.get("pasta_saida", "")
+    pasta_saida = session.get("pasta_saida", ".")
     if not pasta_saida:
         return _pagina_aviso(
             "Nenhum processamento encontrado",

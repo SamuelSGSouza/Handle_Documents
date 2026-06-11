@@ -178,7 +178,7 @@ def parse_pdf_to_csv(input_path: str, input_dir: str, output_folder: str) -> lis
         data_referencia = _retorna_data(str(input_path))
         partes = data_referencia.split("_")
         if len(partes) != 2:
-            raise ValueError(f"data_referencia inválida: {data_referencia!r}")
+            raise [failure(reason=f"data_referencia inválida: {data_referencia!r}", solution="Verificar o prompt e o nome do arquivo para encontrar o real problema", file_path=input_path, original_path=input_path),]
         ano, mes = partes
         dest_folder = output_folder / categoria / ano / mes
 

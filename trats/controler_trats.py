@@ -3,6 +3,8 @@ from trats.trat_csv import parse_csv
 from trats.trat_planilhas import convert_xls_to_csv
 from trats.trat_sped import parse_sped_to_csvs
 from trats.trat_pdf import parse_pdf_to_csv
+from trats.trat_image import parse_image
+from trats.trat_txt import parse_txt
 from utils.reporter_base import Report, failure
 from utils.gerar_exemplos import gerar_exemplos
 from utils.gerar_relatorio_html import gerar_relatorio_html
@@ -30,10 +32,19 @@ def conversor(input_dir: str, output_dir: str, files_to_reload:list=[]) -> list[
                     continue
             if file.endswith(".pdf"):
                 reports = parse_pdf_to_csv(str(filepath),input_dir, output_dir)
-            elif file.endswith(".csv"):
-                reports = parse_csv(str(filepath),input_dir, output_dir)
+            
             elif "sped" in str(filepath).lower():
                 reports = parse_sped_to_csvs(str(filepath), output_dir)
+
+            elif file.endswith(".csv"):
+                reports = parse_csv(str(filepath),input_dir, output_dir)
+
+            elif file.endswith(".png") or file.endswith(".jpg"):
+                reports = parse_image(filepath,input_dir, output_dir)
+
+            elif file.endswith(".txt"):
+                reports = parse_txt(filepath,input_dir, output_dir)
+
             elif file.endswith("xlsx") or file.endswith("xlsb"):
                 reports = convert_xls_to_csv(str(filepath),input_dir, output_dir)
             else:
